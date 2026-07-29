@@ -1,0 +1,243 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   冰的熔化热测量实验报告
+% ----------------------------------------------------
+
+\input{settings} % 导入模板的相关设置
+\usepackage{lipsum}
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\newcommand{\recordblank}[1]{\par\vspace*{#1}\par}
+
+\begin{document}
+
+\scoresTable{}{}{}{}{}{}{}{}
+
+% \infoTable{专业}{年级}{姓名}{学号}{实验时间}{教师签名}
+\infoTable{}{}{}{}{}{} % 信息留空
+
+\begin{center}
+	\LARGE 实验1 \quad 冰的熔化热测量
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：（提前一周）认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用（强烈建议到实验室预习），完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（第一循环实验已由教师提供模板，可以打印）。预习成绩低于10分（共20分）者不能做实验。
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得输入电脑打印，但可扫描手记后打印扫描件）；离开前请实验教师检查记录并签名。
+	    \item 分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。
+	\end{enumerate}
+	\textbf{实验报告就是将预习报告、实验记录、和数据处理与分析合起来，加上本页封面。}
+	\item 每次完成实验后的一周内交\textbf{实验报告}（特殊情况不能超过两周）。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+\end{enumerate}
+
+\textbf{【实验安全与实验室注意事项】}
+\begin{enumerate}
+	\item 使用热水和冰块注意避免烫伤、冻伤。
+	\item 运输水时，注意他人的安全，避免把水弄到地面上。
+\end{enumerate}
+
+\clearpage
+
+\setcounter{section}{0}
+\nsection{实验1}{冰的熔化热测量}{预习报告}
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 掌握混合法测量冰的熔化热基本原理，学习物理建模；
+	\item 测定冰的熔化热。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.20\textwidth}|p{0.05\textwidth}|p{0.5\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，量程，测量精度等） \\
+	\hline
+	1& MS6514 测温仪 &2 & 配两对K型热电偶\\
+	2& 保温杯 &1 & 350ml 或 500ml \\
+	3& 量杯 &1 & \\
+	4& 电子天平 &1 & 量程1000g，最小分辨率0.01g \\
+	5& 冰块 & 适量 & \\
+	6& 热水 & 适量 & \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+
+\subsubsection{简述热力学第一定律}
+
+热力学第一定律，即能量守恒定律，表明能量既不能被创造也不能被消灭，只能从一种形式转化为另一种形式，或从一个物体传递到另一个物体。对于封闭系统，系统内能的增量等于系统吸收的热量与系统对外做功之和：
+\begin{equation}
+	\Delta U = Q - W
+\end{equation}
+其中，$\Delta U$为系统内能的增量，$Q$为系统吸收的热量，$W$为系统对外做的功。
+
+\subsubsection{简述利用混合法来测定冰的熔化热的原理，列出必要的公式}
+
+
+将质量为$m$、温度为$0°\mathrm{C}$的冰块置入量热器内，与质量为$m_0$、温度为$T_0$的水相混合，设量热器内系统达到热平衡时温度为$T_1$。若忽略量热器与外界的热交换，即将水、冰和量热器看作是孤立系统，根据热平衡原理可知，冰块熔化成水并升温吸热与水和量热器内筒的降温放热相等：
+\begin{equation}
+	mL + mC_0(T_1 - T') = (m_0C_0 + m_1C_1)(T_0 - T_1)
+\end{equation}
+式中，$T_0$，$T_1$分别为投冰前、后水的近平衡温度，$T'$为冰的熔点（$0°\mathrm{C}$），$m$为冰的质量，$m_0$为量热器内筒中所取温水的质量；$C_0 = 4.18\,\mathrm{J/(g\cdot°C)}$为水的比热；$m_1$为量热器内筒质量、$C_1$为量热器内筒比热。
+
+解上式得冰的熔化热为：
+\begin{equation}
+	L = \frac{(m_0C_0 + m_1C_1)(T_0 - T_1)}{m} - C_0(T_1 - T')
+\end{equation}
+
+实验中可测出$m$，$m_0$，$T_0$，$T_1$值，$C_0$为已知量，$T'=0°\mathrm{C}$。
+
+\textbf{$m_1C_1$估算方法：}通过保温杯的解剖结构，测量内胆的质量，结合实验时的盛水量可换算出与水接触的内壁部分的质量作为$m_1$，不锈钢的$C_1$为$460\,\mathrm{J/(kg\cdot K)}$。
+
+
+\subsection{实验前思考题}
+
+\begin{question}
+式(2)的建立（建模）做了哪些简化？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+保温杯$m_1C_1$估算所基于的模型作了什么简化？请分析其误差（选做）。
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+（可通过实验回答）不用搅拌器对冰的熔化时间延长多久，对测量精度有多大的影响？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+（选做）外推法修正漏热的物理原理是什么？能否推导出来？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+如何判断冰的温度为$0°\mathrm{C}$？
+\end{question}
+\recordblank{4cm}
+
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	学生签名：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	实验时间：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\nsection{实验1}{冰的熔化热测量}{实验记录}
+
+\subsection{实验内容}
+使用混合法，对已知质量、比热的系统，加入已知质量的冰，测量前后的温度，计算冰的熔化热。
+
+\subsection{实验内容1.1}
+
+\subsubsection{实验数据}
+\recordblank{5.0cm}
+\subsection{实验内容1.2}
+
+\subsubsection{实验数据}
+\recordblank{18cm}
+\clearpage
+\recordblank{13.4cm}
+\subsubsection{实验过程中遇到的问题记录}
+\recordblank{5.0cm}
+\subsection{实验内容2}
+
+\subsubsection{实验数据}
+\recordblank{18cm}
+\clearpage
+\recordblank{9.0cm}
+\subsubsection{实验过程中遇到的问题记录}
+\recordblank{5.0cm}
+\clearpage
+\noindent\begin{minipage}{\textwidth}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	日期：& \rule{2.5cm}{0.4pt} & 评分：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\vspace{0.8em}
+\nsection{实验1}{冰的熔化热测量}{分析与讨论}
+\subsection{数据处理}
+\subsubsection{水、冰质量计算}
+\recordblank{3.5cm}
+\end{minipage}
+
+\subsubsection{潜热计算}
+\recordblank{3.5cm}
+\subsection{（仅对实验内容2）根据上述第5步至第7步所记录的数据，在二维直角坐标纸上作出对应的温度-时间曲线，并作出B点(投冰)、G点（温度回升点）对应的温度值分别为 $T_0$和$T_1$； }
+\recordblank{3.5cm}
+\subsection{求出冰的熔化热，与标准值334 J/g相比较；（建议比较实验内容1与实验内容2两种不同实验方案的冰的熔化热测量值）。}
+\subsubsection{实验内容1}
+\recordblank{3.5cm}
+\subsubsection{结果分析}
+\recordblank{3.5cm}
+\subsubsection{实验内容2}
+\recordblank{3.5cm}
+\subsubsection{结果分析}
+\recordblank{3.5cm}
+\subsubsection{实验内容2数据分析}
+\recordblank{3.5cm}
+\subsection{误差分析}
+\subsubsection{误差来源}
+\recordblank{3.5cm}
+\subsection{改进方法}
+\recordblank{3.5cm}
+\subsection{实验后思考题}
+
+\begin{question}
+往量热器内投入冰块后，冰块浮在水面，量热器内温度不均匀，对实验有何影响？（针对所采用实验方案进行讨论）。
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+除搅拌外，如何进一步减少这一影响？
+\end{question}
+\recordblank{4cm}
+
+\appendix
+\appendixpage
+\addappheadtotoc
+
+
+\recordblank{7cm}
+
+
+\recordblank{7cm}
+
+
+
+\recordblank{7cm}
+
+
+
+\end{document}

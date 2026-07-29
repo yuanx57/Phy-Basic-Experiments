@@ -1,0 +1,233 @@
+%!TEX program = xelatex
+% 如果你有参考文献（myref.bib），请按 xelatex -> bibtex -> xelatex*2 的顺序进行编译
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   实验BD1：复摆与混沌
+% ----------------------------------------------------
+
+\input{settings} % 导入模板的相关设置
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float} % 用于强制表格位置
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\newcommand{\recordblank}[1]{\par\vspace*{#1}\par}
+
+\begin{document}
+
+\scoresTable{}{}{}{}{}{}{}{}
+
+% \infoTable{专业}{年级}{姓名}{学号}{实验时间}{教师签名}
+\infoTable{}{}{}{}{}{} % 信息留空
+
+\begin{center}
+	\LARGE 实验BD1 \quad 复摆与混沌
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：（提前一周）认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用（强烈建议到实验室预习），完成讲义中的预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（由学生自己在实验前设计好，可以打印）。预习成绩低于10分（共20分）者不能做实验。（20分）
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用圆珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得输入电脑打印，但可扫描手记后打印扫描件）；离开前请实验教师检查记录并签名。（30分）
+	    \item 分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。（30分）
+	\end{enumerate}
+	\textbf{实验报告就是将预习报告、实验记录、和数据处理与分析合起来，加上本页封面。}
+	\item 每次完成本实验后，第二次来实验室时交实验报告。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+\end{enumerate}
+
+
+\clearpage
+
+\setcounter{section}{0}
+\nsection{BD1}{复摆与混沌}{预习报告}
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 观察复摆的振动现象，学习复摆的运动方程。
+	\item 了解混沌的基本特征，理解非线性方程解的稳定性与混沌的关系。
+	\item 设置不同的参数，测量角度时序图、相图、功率谱，探索产生混沌的条件。
+	\item 熟悉基于LabVIEW对实验过程进行控制及数据处理。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.25\textwidth}|p{0.08\textwidth}|p{0.45\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，规格等） \\
+	\hline
+	1 & 玻尔振动混沌实验仪 & 1 & COC-JCHD \\
+	2 & myDAQ & 1 & 数据采集设备 \\
+	3 & 直流电源 & 1 & RXN-1502D \\
+	4 & 物理天平 & 1 & 测量重物质量 \\
+	5 & 钢尺 & 1 & 测量重物离转轴距离 \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{实验前思考题}
+
+\begin{question}
+混沌的基本特征是什么？如何认定一个系统进入了混沌状态？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+请求出方程（3）的稳定解（$\theta_0$），并给出方程（4）的详细推导过程。
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+自编计算机程序或根据附录一提供的模拟程序，设置几组不同的参数，模拟摆轮的角度时序图、相图、功率谱，探索产生混沌现象的条件。
+\end{question}
+\recordblank{4cm}
+\clearpage
+\begin{question}
+在振动不稳定区域，选取两个不同的初始值$x(0)$，利用计算机模拟并比较系统的振动状态。
+\end{question}
+\recordblank{4cm}
+
+\clearpage
+\noindent\begin{minipage}{\textwidth}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	学生签名：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	实验时间：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\vspace{0.8em}
+\nsection{BD1}{复摆与混沌}{实验记录}
+
+\subsection{实验内容、步骤、结果}
+
+\subsubsection{测量阻尼振动}
+\end{minipage}
+
+
+\recordblank{7cm}
+
+
+
+\subsubsection{观察受迫振动}
+
+
+\recordblank{7cm}
+
+
+\recordblank{7cm}
+
+\clearpage
+
+\subsubsection{安装重物并测量平衡位置}
+\recordblank{5.0cm}
+\subsubsection{探索混沌现象}
+
+
+
+\recordblank{7cm}
+
+\recordblank{7cm}
+
+\recordblank{7cm}
+
+\recordblank{7cm}
+
+\subsubsection{步骤9：改变初始角度（选做）}
+
+
+\recordblank{7cm}
+
+
+\recordblank{7cm}
+
+
+\recordblank{7cm}
+
+\clearpage
+\subsection{实验过程中遇到的问题记录}
+\recordblank{5.0cm}
+\clearpage
+\noindent\begin{minipage}{\textwidth}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	日期：& \rule{2.5cm}{0.4pt} & 评分：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\vspace{0.8em}
+\nsection{BD1}{复摆与混沌}{分析与讨论}
+\subsection{实验数据分析}
+\subsubsection*{1. 阻尼振动、受迫振动分析}
+\recordblank{3.5cm}
+\end{minipage}
+
+\subsubsection*{2. 增加重物后的混沌摆分析}
+\recordblank{3.5cm}
+\subsubsection*{3. 改变初始角度的影响分析（选做）}
+\recordblank{3.5cm}
+\subsection{实验后思考题}
+
+\begin{question}
+比较玻尔振动仪的动力学方程与混沌实验仪的动力学方程，叙述它们的物理意义以及产生混沌的条件。
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+比较分析不加重物时的相图与加重物后混沌摆的相图，理解用相图分析非线性运动规律的优越性。
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+（选做）对实验步骤3采集的数据进行处理，测量系统的固有圆频率$\omega_0$和阻尼系数$\beta$。
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+（选做）对实验步骤4采集的数据进行处理，求出电机施加的外力矩幅度$M_0$。
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+（选做）对实验步骤5采集的数据进行处理，计算出扭转恢复力系数$c$，并求出扭摆的转动惯量$I$，阻力矩系数$r$。
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+（选做）根据实测的系统参数$I$、$m$、$d$、$c$、$r$、$M_0$、$\omega$等，利用程序模拟系统的运动状态，并和实测的数据进行分析比较，检验理论和实验结果是否相符。
+\end{question}
+\recordblank{4cm}
+
+
+
+\appendix
+\appendixpage
+\addappheadtotoc
+
+\nsection{附录}{}{实验记录附件}
+
+\recordblank{7cm}
+
+
+\recordblank{7cm}
+
+\end{document}

@@ -1,0 +1,316 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% Share-version redaction helpers
+\newcommand{\answerblank}[1][3.8cm]{%
+  \par\nopagebreak[4]\noindent\textbf{答：}\par\nopagebreak[4]\vspace*{#1}}
+\newcommand{\recordblank}[1]{%
+  \par\noindent\rule{0.95\linewidth}{0pt}\rule{0pt}{#1}\par}
+\newcommand{\privateimage}[2]{%
+  \rule{#1}{0pt}\rule{0pt}{#2}}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   实验：多方法测量电磁波在同轴电缆中的速度
+% ----------------------------------------------------
+
+\input{settings}
+\usepackage{lipsum}
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\begin{document}
+
+\scoresTable{20}{}{30}{}{30}{}{80}{}
+
+% \infoTable{专业}{年级}{姓名}{学号}{实验时间}{教师签名}
+\infoTable{\rule{2.5cm}{0.4pt}}{\rule{2.5cm}{0.4pt}}{\rule{2.5cm}{0.4pt}}{\rule{3cm}{0.4pt}}{\rule{3cm}{0.4pt}}{\rule{3cm}{0.4pt}}
+
+\begin{center}
+	\LARGE 多方法测量电磁波在同轴电缆中的速度\quad 实验报告
+\end{center}
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：（提前一周）认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用（强烈建议到实验室预习），完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（第一循环实验已由教师提供模板，可以打印）。预习成绩低于10分（共20分）者不能做实验。
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得输入电脑打印，但可扫描手记后打印扫描件）；离开前请实验教师检查记录并签名。
+	    \item 分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。
+	\end{enumerate}
+	\textbf{实验报告就是将预习报告、实验记录、和数据处理与分析合起来，加上本页封面。}
+	\item 每次完成实验后的一周内交\textbf{实验报告}（特殊情况不能超过两周）。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+\end{enumerate}
+
+\clearpage
+
+\setcounter{section}{0}
+\nsection{}{多方法测量电磁波在同轴电缆中的速度}{预习报告}
+
+\subsection{实验目的}
+\begin{enumerate}
+	\item 认识电磁波在同轴电缆中的传播特性，深入理解电磁波的传播、反射及驻波形成等物理现象。
+	\item 掌握同轴电缆的核心参数（单位长度电容、电感、特性阻抗）及阻抗匹配的基本原理和实际应用。
+	\item 熟悉数字函数发生器、数字示波器的拓展使用功能，掌握信号发生、频率测量、相位差测量、时延测量等操作方法。
+	\item 学会运用行波法、驻波法（及选做的电气参数法）测量电磁波传播速度，培养基于误差分析规范表述实验结果和结论的素养。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.20\textwidth}|p{0.05\textwidth}|p{0.55\textwidth}}
+	\hline
+	编号 & 仪器用具名称 & 数量 & 主要参数（型号，规格等） \\
+	\hline
+	1 & 函数发生器 & 1 & DG4000系列，最大输出频率160\,MHz，输出阻抗50\,$\Omega$ \\
+	2 & 数字示波器 & 1 & DS/MSO1000A系列，带宽200/300\,MHz；时间基准精度$\leq\pm25\,\mathrm{ppm}\times$量程；时钟漂移$\leq\pm5\,\mathrm{ppm/yr}$；通道间时间误差$\leq\pm2\,\mathrm{ns}$；垂直电压精度：全量程$\pm2\%$ \\
+	3 & RG-142 同轴电缆 & 2 & 阻抗$50\pm2\,\Omega$，标称单位长度电容值$96\pm6\,\mathrm{pF/m}$（两端BNC-J）；长度：$50.00\pm0.05\,\mathrm{m}$（2条）\\
+	4 & BNC 连接器 & 10 & BNC桶型连接器$\times$2、BNC-T型头连接器$\times$4、BNC四通连接器$\times$2、BNC终端短路接头$\times$2 \\
+	\hline
+
+	\end{tabular}
+\end{table}
+
+\subsection{实验原理}
+
+\subsubsection{同轴电缆的基本结构与参数}
+
+同轴电缆由内导体（铜芯）、绝缘介质（如PTFE）、外导体（屏蔽网）和护套构成，电磁波（信号）在内外导体之间的绝缘介质中传播，电场与磁场被严格约束在两导体之间的径向空间内。对于内导体外半径为$r_1$、屏蔽网外半径为$r_2$的同轴电缆，单位长度的电容和电感分别为：
+\begin{equation}
+	C' = \frac{\mathrm{d}C}{\mathrm{d}z} = \frac{2\pi\varepsilon_0\varepsilon_r}{\ln(r_2/r_1)}, \qquad
+	L' = \frac{\mathrm{d}L}{\mathrm{d}z} = \frac{\mu_0\mu_r}{2\pi}\ln\frac{r_2}{r_1}
+\end{equation}
+其中$\varepsilon_0=8.85\times10^{-12}\,\mathrm{F/m}$，$\mu_0=4\pi\times10^{-7}\,\mathrm{H/m}$，$\varepsilon_r$、$\mu_r$分别为绝缘介质的相对介电常数和相对磁导率实部。电缆的特性阻抗为$Z_0=\sqrt{L'/C'}$，电磁波传播速度为：
+\begin{equation}
+	v = \frac{1}{\sqrt{L'C'}} = \frac{1}{\sqrt{\varepsilon\mu}} = \frac{c}{\sqrt{\varepsilon_r\mu_r}}
+	\label{eq:v}
+\end{equation}
+对于本实验所用RG-142同轴电缆，$Z_0=50\,\Omega$，标称电容$C'=96.45\,\mathrm{pF/m}$，绝缘介质为PTFE（$\mu_r=1$），传输速率约为真空光速的70\%，即$v\approx2.1\times10^8\,\mathrm{m/s}$。
+
+\subsubsection{阻抗匹配与反射}
+
+当负载阻抗$Z_L$等于传输线特性阻抗$Z_0$时，信号能量完全被负载吸收，无反射，称为阻抗匹配。当$Z_L\neq Z_0$时，信号在连接处发生反射，反射系数为：
+\begin{equation}
+	\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0}
+\end{equation}
+两种极端情况：末端开路（$Z_L\to\infty$）时$\Gamma=+1$，反射电压与入射电压同相；末端短路（$Z_L=0$）时$\Gamma=-1$，短路端总电压为零，形成电压驻波的波节。
+
+\subsubsection{行波法测量波速}
+
+行波法基于波在介质中以一定速度传播、经过一定距离后产生时延的原理。
+
+\textbf{方案1（阻抗匹配，直接时延）：}电缆末端接与特性阻抗相等的负载，无反射。函数发生器CH1接电缆始端，示波器CH1接始端，CH2接末端，两通道的时延差即为信号在电缆中的传播时间$\Delta t$，则：
+\begin{equation}
+	v = \frac{l}{\Delta t}
+\end{equation}
+
+\textbf{方案2（末端失配，反射时延）：}电缆末端开路或短路，产生全反射。示波器两通道均接电缆始端，分别测量入射脉冲与反射脉冲的到达时间差$\Delta t'$（即信号往返时间），则：
+\begin{equation}
+	v = \frac{2l}{\Delta t'}
+\end{equation}
+
+行波法通常使用方波或脉冲信号以降低时间读数的不确定度（正弦波边沿不陡峭，读数误差大）。也可利用正弦信号的相位差$\Delta\theta$，结合$\Delta t = \Delta\theta/(2\pi f)$，计算：
+\begin{equation}
+	v = \frac{2\pi f l}{\Delta\theta}
+\end{equation}
+此时在电缆末端接入负载，阻抗为50\,$\Omega$（阻抗匹配，抑制反射）。
+
+\subsubsection{驻波法测量波速}
+
+当反射波与入射波叠加形成共振干涉时，通过测量谐振频率与电缆长度的关系，可计算波速。
+
+\textbf{同轴传输线谐振腔驻波法：}电缆始端通过T型头接入示波器，末端开路或短路产生全反射。末端开路时，电缆长度为半波长的整数倍（$n\lambda/2$）；末端短路时，电缆长度为四分之一波长的奇数倍（$(2m-1)\lambda/4$）。设$N$个极值点之间的总频率差为$\Delta F=(N-1)\Delta f$，则：
+\begin{equation}
+	v = \frac{2\Delta F \cdot l}{N-1}
+\end{equation}
+
+\textbf{同轴环形谐振器驻波法：}电缆始端与末端通过四通连接器相连，信号耦合到环形通道后在电缆中传播返回始端，与入射信号叠加形成共振干涉。$N$个极值点之间的总频率差为$\Delta F=(N-1)\Delta f$，则：
+\begin{equation}
+	v = \frac{\Delta F \cdot l}{N-1}
+\end{equation}
+实验中函数发生器设置正弦信号扫频，示波器输入阻抗设为1\,M$\Omega$，先粗测极值频率，再手动调节至精确极值。
+
+
+\begin{equation}
+	v = \frac{1}{\sqrt{L'C'}}
+\end{equation}
+
+\subsection{实验安全注意事项}
+\begin{enumerate}
+	\item 连接BNC接头时，应先对准凸起与卡槽，轻推到底后旋转锁紧，避免强行插拔损坏接头。
+	\item 函数发生器输出信号时，勿将输出端直接短接，避免损坏仪器。
+	\item 示波器探头接触到高频信号时，注意选择正确的输入阻抗（50\,$\Omega$或1\,M$\Omega$），防止阻抗不匹配导致波形失真或损坏仪器。
+	\item 实验结束后，关闭仪器电源，整理实验器材，恢复仪器初始设置。
+\end{enumerate}
+
+\subsection{实验前思考题}
+
+\begin{question}
+	影响同轴电缆特性阻抗的基本因素有哪些？商用同轴电缆有哪些典型的特性阻抗？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	在行波法和驻波法测量中，函数发生器输出阻抗、示波器输入阻抗对测量结果有何影响？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	函数发生器扫频设置：在给定电缆长度时，驻波法所需频率范围有何约束？参数法测量电缆单位长度电容、单位长度电感时，频率范围又有何约束？
+\end{question}
+\answerblank[3.8cm]
+
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{3cm}{0.4pt} \\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	学生签名：&\rule{2.5cm}{0.4pt} & 评分：& \\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\nsection{}{多方法测量电磁波在同轴电缆中的速度}{实验记录}
+
+\subsection{实验方案与步骤}
+
+\subsubsection{实验前检查}
+\begin{enumerate}
+	\item 检查函数发生器、示波器开机正常，各仪器参数初始设置确认（发生器输出阻抗50\,$\Omega$，示波器输入耦合AC/DC、输入阻抗待实验方案选定后设置）；
+	\item 检查同轴电缆、BNC连接器无损坏，电缆外观无破损、弯折或接头松动；
+	\item 记录环境温度及湿度。
+\end{enumerate}
+
+\subsubsection{行波法实验步骤}
+\begin{enumerate}
+	\item \textbf{系统连接：}示波器CH1输出通过BNC-T型头分接：一路接函数信号发生器CH1，另一路连接长度为$l$的RG-142同轴电缆一端；电缆另一端接示波器CH2（阻抗匹配测量时，CH2输入阻抗设为50\,$\Omega$；反射法时，CH2输入阻抗设为1\,M$\Omega$并同时接短路/开路头）。
+	\item \textbf{信号设置：}函数发生器输出方波信号，频率约为$1\sim5\,\mathrm{KHz}$，幅值约$1\,\mathrm{V_{pp}}$，输出阻抗50\,$\Omega$。
+	\item \textbf{时延读取：}调节示波器时基至$\sim50\,\mathrm{ns/div}$，利用示波器光标功能测量CH1与CH2上升沿（或特征点）的时间差$\Delta t$；或直接使用示波器"时延测量"功能自动读数。
+	\item \textbf{数据记录：}将阻抗设置、电缆长度、时延读数填入表1，并截取代表性波形（标注CH1、CH2、时延游标）。
+\end{enumerate}
+
+\recordblank{6cm}
+
+\recordblank{6cm}
+
+\subsubsection{驻波法实验步骤}
+\begin{enumerate}
+	\item \textbf{同轴传输线谐振腔驻波法：}
+	\begin{enumerate}
+		\item 连接：函数发生器CH1通过T型头分接示波器CH1（输入阻抗1\,M$\Omega$）和电缆一端，电缆另一端接短路头（或开路）。
+		\item 函数发生器输出正弦扫频信号（范围1\,MHz$\sim$30\,MHz），示波器设为1\,M$\Omega$输入阻抗，观察幅值随频率变化，记录出现极值（极大或极小）时的频率。
+		\item 在粗测极值频率附近手动调节频率，精确测量至少两个极值频率$f_1$、$f_2$，计算频率差$\Delta f = f_2 - f_1$。
+		\item 截取谐振波形及记录频率值。
+	\end{enumerate}
+
+\recordblank{6cm}
+
+\recordblank{5cm}
+
+\recordblank{6cm}
+
+\clearpage
+
+	\item \textbf{同轴环形谐振器驻波法：}
+	\begin{enumerate}
+		\item 连接：函数发生器CH1通过四通连接器分接：一路接示波器CH1（输入阻抗1\,M$\Omega$）作为监测；电缆始端和末端均接四通连接器（形成环路）。
+		\item 其余步骤同上，精确测量多个谐振极值频率，利用$v = \Delta F\cdot l/(N-1)$计算波速。
+	\end{enumerate}
+\end{enumerate}
+
+\recordblank{5cm}
+
+
+\recordblank{6cm}
+
+\subsection{实验过程中遇到的问题记录}
+\recordblank{5cm}
+\subsection{实验过程思考题}
+\begin{question}
+如何保存示波器测量数据？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+用示波器测量电压信号的噪声大约多大？是否需要用数字滤波提高信号
+质量？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+为精确获得极值点对应频率，可手动扫频：即手动逐个输入频率点，测量
+输入示波器的电压值。 出于仪器本身的限制，在某一较窄的频率范围内，极值
+不随频率变化，为什么？可以通过数据拟合得到更精确的极值频率吗？如何确
+定极值频率的不确定度？
+\end{question}
+\answerblank[3.8cm]
+
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{3cm}{0.4pt}\\
+	\hline
+	日期：& \rule{3cm}{0.4pt} & 评分：& \rule{3cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\nsection{}{多方法测量电磁波在同轴电缆中的速度}{分析与讨论}
+\subsection{数据处理}
+\subsubsection{行波法计算波速}
+\recordblank{3.2cm}
+\subsubsection{行波法不确定度分析}
+\recordblank{3.2cm}
+\subsubsection{驻波法计算波速}
+\recordblank{3.2cm}
+\subsubsection{驻波法不确定度分析}
+\recordblank{3.2cm}
+\subsection{实验后思考题}
+
+\begin{question}
+	用行波法、驻波法测量同轴电缆电磁波波速与测量弦振动机械波速有何同异？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	通过波速计算得的同轴电缆绝缘层的介电常数为多少？与其材料（如RG-142同轴电缆的PTFE）的介电常数相比偏差多大？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	用同轴环形谐振器驻波法可测得以同轴电缆为腔体的共振干涉，进而导致电缆内电磁波的量子化，这完全可以用经典电磁理论解释。对比原子玻尔模型，你认为有哪些相似之处？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	驻波法中，高$Q$值谐振腔中的$v(f)$谐振峰是否符合洛伦兹线形分布？用该分布拟合所得到的谐振频率$f_0$的不确定度是多少？
+\end{question}
+\answerblank[3.8cm]
+
+\appendix
+\appendixpage
+\addappheadtotoc
+
+\section*{附录：实验报告记录}
+\recordblank{5cm}
+
+\recordblank{5cm}
+
+\section*{附录：试验后桌面清理照片}
+\recordblank{5cm}
+
+\end{document}

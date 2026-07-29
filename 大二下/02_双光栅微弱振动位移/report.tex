@@ -1,0 +1,288 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% Share-version redaction helpers
+\newcommand{\answerblank}[1][3.8cm]{%
+  \par\nopagebreak[4]\noindent\textbf{答：}\par\nopagebreak[4]\vspace*{#1}}
+\newcommand{\recordblank}[1]{%
+  \par\noindent\rule{0.95\linewidth}{0pt}\rule{0pt}{#1}\par}
+\newcommand{\privateimage}[2]{%
+  \rule{#1}{0pt}\rule{0pt}{#2}}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   实验 CC3 双光栅测量微弱振动位移量实验
+% ----------------------------------------------------
+
+% 由于没有 Settings.tex，此处内联必要的包和设置
+\input{Settings.tex}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{appendix}
+\usepackage{hyperref}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{2em}
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\begin{document}
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{
+		|X|X|X|X
+		|X|X|X|X|}
+	\hline
+	\multicolumn{2}{|c|}{预习报告}&\multicolumn{2}{|c|}{实验记录}&\multicolumn{2}{|c|}{分析讨论}&\multicolumn{2}{|c|}{总成绩}\\
+	\hline
+20分	& & 30分& & 30分& & & \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt}   & 学号： & \rule{3cm}{0.4pt}\\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\begin{center}
+	\LARGE \textbf{基础物理实验 \quad CC3 双光栅测量微弱振动位移量实验}
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：（提前一周）认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用（强烈建议到实验室预习），完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（第一循环实验已由教师提供模板，可以打印）。预习成绩低于10分（共20分）者不能做实验。
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得输入电脑打印，但可扫描手记后打印扫描件）；离开前请实验教师检查记录并签名。
+	    \item 分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。
+	\end{enumerate}
+	\textbf{实验报告就是将预习报告、实验记录、和数据处理与分析合起来，加上本页封面。}
+	\item 每次完成实验后的一周内交\textbf{实验报告}（特殊情况不能超过两周）。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+\end{enumerate}
+
+
+\clearpage
+
+\setcounter{section}{0}
+\section{基础物理实验  \quad CC3 双光栅测量微弱振动位移量实验 \quad 预习报告}
+
+	
+\subsection{实验目的}
+\begin{enumerate}
+    \item 了解利用光的多普勒频移形成光拍的原理，并用于测量光拍拍频。
+    \item 学会使用精确测量微弱振动位移的一种方法。
+    \item 应用双光栅微弱振动测量仪测量音叉振动的微振幅。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.22\textwidth}|p{0.05\textwidth}|p{0.55\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，测量范围，测量精度等） \\
+	\hline
+	1 & 双光栅微弱振动测量仪 & 1 & DHGS-1 型，半导体激光器：$\lambda=650\,\mathrm{nm}$，功率 $2\sim5\,\mathrm{mW}$；音叉谐振频率：500 Hz 左右。 \\
+        \hline  
+        2 & 数字示波器 & 1 & DS1000E(D) \\
+        \hline  
+        3 & 信号发生器 & 1 & MFG-2000 \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+
+\subsubsection{位移光栅的多普勒频移}
+
+多普勒效应是指光源、接收器、传播介质或中间反射器之间的相对运动所引起的接收器接收到的光波频率与光源频率发生变化，由此产生的频率变化称为多普勒频移。
+
+对于位相光栅，当激光平面波垂直入射时，由于光栅上不同的光密和光疏媒质部分对光波的位相延迟作用，使入射的平面波变成出射时的折曲波阵面。通过光栅后，光的强度出现周期性的变化，主极大位置满足光栅衍射方程：
+\begin{equation}
+    d\sin\theta = \pm k\lambda, \quad k = 0, 1, 2, \ldots
+    \label{eq:grating}
+\end{equation}
+式中：$k$ 为主极大级数，$d$ 为光栅常数，$\theta$ 为衍射角，$\lambda$ 为光波波长。
+
+若光栅在 $y$ 方向以速度 $v$ 移动，则对应同一级衍射光，在 $y$ 方向有 $vt$ 的位移量，对应出射光波位相的变化量为：
+\begin{equation}
+    \Delta\phi(t) = \frac{2\pi}{\lambda}\Delta s = \frac{2\pi}{\lambda}vt\sin\theta
+    \label{eq:phase}
+\end{equation}
+将式~(\ref{eq:grating}) 代入式~(\ref{eq:phase}) 得：
+\begin{equation}
+    \Delta\phi(t) = \frac{2\pi}{\lambda}vt\frac{k\lambda}{d} = k\cdot 2\pi\frac{v}{d}t = k\omega_d t
+    \label{eq:doppler_phase}
+\end{equation}
+其中 $\omega_d = 2\pi\dfrac{v}{d}$。
+
+激光从移动光栅出射时，$k$ 级衍射光波的电矢量方程为：
+\begin{equation}
+    E = E_0\cos[(\omega_0 + k\omega_d)t]
+    \label{eq:efield}
+\end{equation}
+即移动的位相光栅 $k$ 级衍射光波，相对于静止的位相光栅有一个 $\omega_a = \omega_0 + k\omega_d$ 的多普勒频移。
+
+\subsubsection{光拍的获得与检测}
+
+为在光频 $\omega_0$ 中检测出多普勒频移量，采用"拍"的方法：将已频移的和未频移的光束互相平行叠加，形成光拍。
+
+本实验采用两片完全相同的光栅平行紧贴：光栅 A（动光栅）以速度 $v_A$ 移动，起频移作用；光栅 B（静光栅）静止不动，只起衍射作用。通过双光栅后，衍射光包含两种以上不同频率成分的平行光束，直接形成光拍。
+
+取 $k=1$，光拍信号经光电检测器后，其拍频信号的光电流为：
+\begin{equation}
+    i_S = \xi E_{10}E_{20}\cos[\omega_d t + (\varphi_2 - \varphi_1)]
+    \label{eq:photocurrent}
+\end{equation}
+拍频 $F_\text{拍}$ 为：
+\begin{equation}
+    F_\text{拍} = \frac{\omega_d}{2\pi} = \frac{v_A}{d} = v_A n_\theta
+    \label{eq:beat_freq}
+\end{equation}
+其中 $n_\theta = 1/d$ 为光栅密度，本实验 $n_\theta = 100\,\text{条}/\text{mm}$。
+
+\subsubsection{微弱振动位移量的检测}
+
+由式~(\ref{eq:beat_freq})，$F_\text{拍}$ 只正比于光栅移动速度 $v_A$。将光栅粘在音叉上，$v_A$ 是周期性变化的，故 $F_\text{拍}$ 也随时间变化。微弱振动的位移振幅为：
+\begin{equation}
+    A = \frac{1}{2}\int_0^{T/2}v(t)\,dt = \frac{1}{2}\int_0^{T/2}\frac{F_\text{拍}(t)}{n_\theta}\,dt = \frac{1}{2n_\theta}\int_0^{T/2}F_\text{拍}(t)\,dt
+    \label{eq:amplitude}
+\end{equation}
+式中 $T$ 为音叉振动周期，$\displaystyle\int_0^{T/2}F_\text{拍}(t)\,dt$ 表示 $T/2$ 时间内拍频波的个数 $N$。因此：
+\begin{equation}
+    \boxed{A = \frac{N}{2n_\theta}}
+    \label{eq:amp_N}
+\end{equation}
+只需在示波器上读出 $T/2$ 内的拍频波形数 $N$，即可由上式算出音叉微振幅。
+
+波形数计算方法：
+\[
+    N = \text{整数波形数} + \text{满}1/2\text{或}1/4\text{或}3/4\text{的分数部份} + \frac{\sin^{-1}a}{360^\circ} + \frac{\sin^{-1}b}{360^\circ}
+\]
+其中 $a$、$b$ 为波群首、尾幅度与该处完整波形振幅之比。
+\clearpage
+\subsection{实验前思考题}
+
+\begin{question}
+	简述位移光栅的多普勒频移原理。
+\end{question}
+\answerblank[3.8cm]
+\begin{question}
+	简述光拍的获得与检测方法和原理。
+\end{question}
+\answerblank[3.8cm]
+\begin{question}
+	简述微弱振动位移量的检测方法和原理。
+\end{question}
+\answerblank[3.8cm]
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名： & \rule{2.5cm}{0.4pt} & 学号：& \rule{3cm}{0.4pt} \\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点： & \rule{2.5cm}{0.4pt} \\
+	\hline
+	学生签名：&\rule{2.5cm}{0.4pt} & 评分： &\\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\section{基础物理实验  \quad  CC3 双光栅测量微弱振动位移量实验 \quad 实验记录}
+
+
+\textbf{【实验内容、步骤、结果】}
+
+\subsection{音叉谐振调节}
+\subsubsection{简述本次实验方法和过程}
+
+将固纬信号发生器 CH1 连接至音叉驱动器，输出约 $500\,\text{Hz}$、$V_{pp} \approx 6\,\text{V}$ 的正弦波驱动信号。调整激光器、静光栅、动光栅至同一直线，使衍射光斑中最亮者进入光电传感器。调节静动光栅尽量平行后，在 $500\,\text{Hz}$ 附近以 $0.1\,\text{Hz}$ 间隔微调频率，找到音叉谐振点（振幅最大，$T/2$ 内光拍波数最多，约 15 个左右）。记录谐振频率及对应波形数据。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\subsection{外力驱动音叉时的谐振曲线的测量}
+\subsubsection{简述本次实验方法和过程}
+
+保持驱动信号幅度不变，在音叉谐振点附近以 $0.1\,\text{Hz}$ 为间隔，选取 8 个频率点，分别在示波器上读取 $T/2$ 内的光拍波形数 $N$，由公式 $A = N/(2n_\theta)$ 计算对应的振幅 $A$。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\subsection{音叉谐振曲线变化趋势研究（改变有效质量）}
+\subsubsection{简述本次实验方法和过程}
+
+保持驱动信号幅度不变，将软管放入音叉上的小孔以改变音叉有效质量，重新在谐振点附近以 $0.1\,\text{Hz}$ 间隔选取 8 个频率点，测量对应的光拍波数和振幅，研究谐振曲线的变化趋势。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\textbf{【实验过程中遇到的问题记录】}
+\recordblank{5cm}
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{3cm}{0.4pt}\\
+	\hline
+	日期：& \rule{3cm}{0.4pt} & 评分：& \rule{3cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\section{基础物理实验  \quad  CC3 双光栅测量微弱振动位移量实验 \quad 分析与讨论}
+\textbf{【分析与讨论】}
+\subsection{音叉谐振时光拍信号的平均频率}
+\recordblank{3.2cm}
+\subsection{绘制音叉的频率—振幅曲线；分析讨论其特点}
+\recordblank{3.2cm}
+\subsection{音叉不同有效质量时的谐振曲线，分析讨论其变化趋势}
+\recordblank{3.2cm}
+\clearpage
+\appendix
+\renewcommand{\appendixname}{附录}
+\section*{附录}
+
+\subsection*{A\quad 实验报告记录}
+\recordblank{5.5cm}
+\subsection*{B\quad 实验台照片}
+\recordblank{5.5cm}
+\end{document}

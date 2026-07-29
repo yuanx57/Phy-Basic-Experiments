@@ -1,0 +1,442 @@
+%!TEX program = xelatex
+% 如果你有参考文献（myref.bib），请按 xelatex -> bibtex -> xelatex*2 的顺序进行编译
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   作者：Huanyu Shi，2019级
+%   Github：https://github.com/huanyushi/SYSU-SPA-Labreport-Template
+%   知乎：https://www.zhihu.com/people/za-ran-zhu-fu-liu-xing
+%   Last update : 2024.10.27
+% ----------------------------------------------------
+
+\input{settings}
+
+% Share-version redaction helpers
+\newcommand{\answerblank}[1][3.8cm]{%
+  \par\nopagebreak[4]\noindent\textbf{答：}\par\nopagebreak[4]\vspace*{#1}}
+\newcommand{\recordblank}[1]{%
+  \par\noindent\rule{0.95\linewidth}{0pt}\rule{0pt}{#1}\par}
+ % 导入模板的相关设置
+\usepackage{lipsum}
+
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\begin{document}
+
+\scoresTable{20}{}{30}{}{30}{}{}{}
+
+% \infoTable{专业}{年级}{姓名}{学号}{实验时间}{教师签名}
+\infoTable{\rule{2.5cm}{0.4pt}}{\rule{2.5cm}{0.4pt}}{\rule{2.5cm}{0.4pt}}{\rule{3cm}{0.4pt}}{\rule{3cm}{0.4pt}}{\rule{3cm}{0.4pt}}
+
+\begin{center}
+	\LARGE 大学物理实验 \quad 偏振光实验报告
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：（提前一周）认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用（强烈建议到实验室预习），完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（第一循环实验已由教师提供模板，可以打印）。预习成绩低于10分（共20分）者不能做实验。
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得输入电脑打印，但可扫描手记后打印扫描件）；离开前请实验教师检查记录并签名。
+	    \item 分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。
+	\end{enumerate}
+	\textbf{实验报告就是将预习报告、实验记录、和数据处理与分析合起来，加上本页封面。}
+	\item 每次完成实验后的一周内交\textbf{实验报告}（特殊情况不能超过两周）。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+\end{enumerate}
+
+\subsection{实验安全注意事项}
+\begin{enumerate}
+	\item 实验中不要用手触摸镜片，以免弄脏镜片；
+	\item 避免直视光源，注意光源表面高温；
+	\item 注意用电安全。
+\end{enumerate}
+\clearpage
+
+\setcounter{section}{0}
+\nsection{大学物理实验-}{偏振光实验}{预习报告}
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 理解偏振光的基本概念，了解线偏振光、椭圆偏振光和圆偏振光。
+	\item 分析偏振光产生的三种方法：吸收、反射和散射。
+	\item 了解在各向异性材料介质中光波的传播，学习偏振光通过各向异性介质后，产生的"相位延迟"（$\lambda/2$波片和$\lambda/4$波片）。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	% \setlength{\tabcolsep}{10mm}
+	\begin{tabular}{p{0.05\textwidth}|p{0.20\textwidth}|p{0.05\textwidth}|p{0.5\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，测量范围，测量精度等） \\
+	\hline
+	1&光功率计 &1 & 用于测量透射光强度 \\
+
+	2&白光光源 &1 & 灯丝白炽光源，在红外区有不可忽略的发射 \\
+	
+	3&光学导轨 & 1 & 用于固定各光学元件，保证共轴 \\
+	
+	4&光学测角台&1 & 用于精确测量偏振片旋转角度 \\
+	5&偏振片&3 & 线偏振片，利用选择性吸收原理工作 \\
+	6&半波片（$\lambda/2$波片）&1 & 对给定波长，o光与e光光程差为$\lambda/2$ \\
+	7&四分之一波片（$\lambda/4$波片）&2 & 对给定波长，o光与e光光程差为$\lambda/4$ \\
+	
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+
+\subsubsection{偏振光的基本概念}
+
+光是横波，其电场矢量振动方向垂直于传播方向。自然光的电场振动方向在垂直于传播方向的平面内各方向均匀分布。若电场矢量只在某一固定方向振动，则称为\textbf{线偏振光}（平面偏振光）；若电场矢量末端轨迹为椭圆，则称为\textbf{椭圆偏振光}；圆偏振光是椭圆偏振光的特例，电场矢量大小不变而方向均匀旋转。
+
+\subsubsection{偏振光的产生}
+
+\paragraph{（一）吸收法起偏：偏振片}
+
+偏振片利用选择性吸收原理工作。其内部存在沿某一方向排列的长链形分子结构，会吸收沿该方向振动的偏振光，而让垂直于该方向振动的偏振光通过。透振方向即为正交于长分子链的方向。
+
+当强度为 $I_0$ 的线偏振光透过检偏片后，透射光强度（不考虑吸收损耗）满足\textbf{马吕斯定律}：
+\begin{equation}
+    I = I_0 \cos^2\theta
+\end{equation}
+其中 $\theta$ 为入射线偏振光的振动方向与偏振片透振方向之间的夹角。
+
+\paragraph{（二）玻璃反射起偏：布儒斯特角}
+
+当光以布儒斯特角 $\theta_B$ 入射到两种介质界面时，反射光为垂直于入射面的完全线偏振光。布儒斯特角满足：
+\begin{equation}
+    \tan\theta_B = \frac{n_{\text{verre}}}{n_{\text{air}}}
+\end{equation}
+其中 $n_{\text{verre}}$ 为折射介质的折射率，$n_{\text{air}}$ 为入射介质（空气）的折射率。此时反射光与折射光互相垂直。
+
+\paragraph{（三）散射起偏：瑞利散射}
+
+当散射微粒尺寸小于光波长时，发生瑞利散射，其散射功率满足 $P_{\text{Ray}} \propto 1/\lambda^4$，故蓝光散射比红光更强烈。垂直于入射光方向观察到的散射光是部分（甚至完全）线偏振光。
+
+\subsubsection{各向异性介质中的光传播与波片}
+
+晶体介质对不同偏振方向的光具有不同折射率（$n_x \neq n_y$），称为双折射。光在晶体中分解为振动方向互相垂直的两束光：遵守普通折射定律的寻常光（o光）和不遵守普通折射定律的非常光（e光）。
+
+光通过厚度为 $e$ 的各向异性介质后，两个分量之间产生光程差：
+\begin{equation}
+    \delta = (n_x - n_y)\,e
+\end{equation}
+对应相位差为 $\Delta\varphi = \dfrac{2\pi}{\lambda_0}(n_x - n_y)e$。
+
+\paragraph{$\lambda/2$波片（半波片）}
+
+半波片厚度使得两个分量光程差 $\delta = \lambda/2$，相位差 $\Delta\varphi = \pi$。其主要效果：
+\begin{itemize}
+    \item 线偏振光经过半波片后仍为线偏振光，但其振动方向相对于波片o轴（或e轴）对称反转，即偏转角度变为 $-\alpha$（若入射时与o轴夹角为 $\alpha$）。
+    \item 椭圆偏振光经过半波片后仍为椭圆偏振光，但旋转方向反转（左旋变右旋，或反之）。
+\end{itemize}
+
+\paragraph{$\lambda/4$波片（四分之一波片）}
+
+四分之一波片厚度使得两个分量光程差 $\delta = \lambda/4$，相位差 $\Delta\varphi = \pi/2$。其主要效果：
+\begin{itemize}
+    \item 当线偏振光的振动方向与波片快（慢）轴成 $45°$ 角时，出射光为圆偏振光。
+    \item 一般情况下，线偏振光经过 $\lambda/4$ 波片后变为椭圆偏振光。
+    \item 椭圆偏振光（当波片o轴或e轴与椭圆主轴一致时）经过 $\lambda/4$ 波片后变为线偏振光。
+\end{itemize}
+
+\subsection{实验前思考题}
+\begin{question}
+	什么是瑞利散射？
+\end{question}
+\answerblank[3.8cm]
+
+\noindent
+
+\begin{question}
+    举例说明瑞利散射。
+\end{question}
+\answerblank[3.8cm]
+
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名： & \rule{2.5cm}{0.4pt} & 学号：&\rule{3cm}{0.4pt}\\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点： & \rule{2.5cm}{0.4pt} \\
+	\hline
+学生签名：&\rule{2.5cm}{0.4pt} & 评分： &\\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\nsection{大学物理实验-}{偏振光实验}{实验记录}
+【实验内容、步骤、结果】（按照实验内容和步骤依次简要记录每项实验的"内容、步骤、结果"，共8项实验，总计30分。注意包含实验数据、现象照片或现象描述等）\\
+实验共计 8 个小内容，有数据的记录数据，没有数据的可以用手机拍摄结果；如果手机拍摄不方便，可以用文字描述现象。
+\subsection{实验内容和步骤}
+\subsubsection{研究交叉线性偏振片}
+\textbf{实验器材：}白光光源，凸透镜，可变光阑，两个线性偏振片，光学导轨，屏幕。
+
+\textbf{实验步骤与现象记录：}
+\begin{enumerate}
+    \item[\textbf{1.1}] 用自准直方法调整光路，产生准直平行光束。
+    \item[\textbf{1.2}] 放置偏振片P1并旋转其透振方向。
+    \recordblank{5cm}
+    \par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+    \item[\textbf{1.3}] 加入偏振片P2并旋转。
+
+    \recordblank{6cm}
+
+    \par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+    
+    \item[\textbf{1.4}] 在消光位置将P1旋转$20°$后，再将P2同向旋转$20°$。
+    \par\noindent\textbf{实验现象：}\par
+    \recordblank{4cm}
+    
+    \recordblank{6cm}
+    \textbf{说明：}消光条件只与两偏振片相对夹角有关，而与绝对方向无关。
+
+    \item[\textbf{1.5}] 在P1与P2（交叉消光状态）之间插入P3。先令P3透振方向与P1或P2平行（消光不变），然后将P3旋转$45°$。\par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+    \recordblank{5cm}
+    \textbf{说明：}P3将P1透射的线偏振光分解出与P2透振方向有分量的成分，从而有光透过P2。
+    \item[\textbf{1.6}] 取走P3，在P1与P2之间插入塑料板。
+    \recordblank{6cm}
+    \par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+\end{enumerate}
+
+\clearpage
+
+\subsubsection{验证马吕斯定律}
+\textbf{实验器材：}白光光源，2个滤光片（绿色和红色），两个会聚透镜，可变光阑，两个偏振片，光功率计。
+
+\textbf{实验步骤与数据记录：}
+
+\textbf{2.1} 在准直平行光路上依次放置P1、P2，令$\theta = 0°$时两透振方向平行，测得最大光强 $I_0$。
+
+\textbf{2.2} 改变P2与P1的夹角 $\theta$，每次旋转约 $20°$，共测量约10组数据，记录如下（示例数据，实际以实验室测量为准）：
+
+\recordblank{6cm}
+
+\textbf{2.3} 换用\textbf{红色}滤光片重复实验，记录各角度光强，验证马吕斯定律在单色光下同样成立。
+
+\textbf{2.4} 换用\textbf{绿色}滤光片重复实验。\textbf{比较：}\par
+\recordblank{2.8cm}
+
+\clearpage
+
+\subsubsection{玻璃反射起偏和布儒斯特角的测量}
+
+\textbf{3.1} 旋转偏振片，观察天花板日光灯管。
+\recordblank{5cm}
+\par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+
+\textbf{3.2} 旋转偏振片，观察日光灯管在桌面玻璃或地面瓷砖上的反射像。
+\recordblank{6cm}
+\par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+
+\textbf{3.3} 改变观察者位置（即改变入射角）。当旋转偏振片至某方向光强接近零（消光）时，此时的反射角即为布儒斯特角附近。\textbf{验证：}对于折射率 $n = 1.5$ 的玻璃，
+\[
+\theta_B = \arctan(n) = \arctan(1.5) \approx 56.3°
+\]
+\par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+
+\subsubsection{光的散射}
+\textbf{实验材料：}白光光源，凸透镜，可变光阑，偏振片P，水槽，奶粉。
+
+\textbf{4.1} 在准直平行光中放置水槽（水槽壁面与光轴平行）。
+
+\textbf{4.2} 向水中加入少量奶粉，搅匀，使水变为轻微浑浊状态。
+
+\textbf{4.3} 从垂直于光传播方向（$Ox$ 横向方向）观察散射光，并将偏振片置于眼睛前旋转。
+\recordblank{6cm}
+\par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+
+\subsubsection{分析 $\lambda/2$ 波片特性}
+\textbf{实验器材：}氦氖激光器，短焦距透镜，偏振片P1，偏振片P2，$\lambda/2$波片，小屏幕。
+
+\textbf{5.1}
+\begin{itemize}
+    \item 调节P1和P2，找到消光位置（两透振方向互相垂直）。
+    
+    \textbf{实验记录：}\par
+\recordblank{2.8cm}
+    \item 在P1和P2之间插入 $\lambda/2$ 波片。
+    \item 旋转半波片，观察屏幕光强变化并记录消光位置。
+    \par\noindent\textbf{实验现象：}\par
+    \recordblank{4cm}
+    \recordblank{6cm}
+\end{itemize}
+
+\textbf{5.2}
+\begin{itemize}
+    \item 将P1旋转$20°$，再旋转P2寻找消光位置。
+    
+    \textbf{实验记录：}\par
+\recordblank{2.8cm}
+    \item \textbf{实验结果：}\par
+\recordblank{2.8cm}
+    \textbf{说明：}经过 $\lambda/2$ 波片后，线偏振光的振动方向相对于波片轴对称地偏转了$2\times20°=40°$（相对初始方向），证实了半波片对线偏振光的旋转效应——使偏振方向旋转 $2\alpha$（$\alpha$ 为入射偏振方向与波片轴的夹角）。
+\end{itemize}
+
+\subsubsection{分析 $\lambda/4$ 波片特性}
+\textbf{实验材料：}氦氖激光器，短焦镜头，偏振片P1，偏振片P2，$\lambda/4$波片，小屏幕。
+
+\textbf{6.1} 调节P1和P2，找到消光位置（透振方向互相垂直）。
+
+\textbf{实验记录：}\par
+\recordblank{2.8cm}
+
+\textbf{6.2}
+\begin{itemize}
+    \item 在P1和P2之间插入 $\lambda/4$ 波片。
+    \item 旋转 $\lambda/4$ 波片，观察屏幕光强变化并记录消光位置。
+    \par\noindent\textbf{实验现象：}\par
+    \recordblank{4cm}
+    \recordblank{5cm}
+    \item \textbf{说明：}若波片轴与P1方向夹角不为$0°$或$90°$，则出射为椭圆偏振光，P2无法消光。
+\end{itemize}
+
+\subsubsection{分析两个 $\lambda/4$ 波片特性}
+\textbf{实验材料：}氦氖激光器，短焦距透镜，光阑，两个偏振片，两个$\lambda/4$波片。
+
+\textbf{7.1} 调节P1和P2至消光位置。
+
+\textbf{实验记录：}\par
+\recordblank{2.8cm}
+
+\textbf{7.2} 放入第一个 $\lambda/4$ 波片，旋转至消光重现，记录该消光位置（此时波片轴与P1平行）。
+
+\textbf{实验记录：}\par
+\recordblank{2.8cm}
+
+\textbf{7.3} 放入第二个 $\lambda/4$ 波片，旋转至消光出现。
+
+\textbf{实验记录：}\par
+\recordblank{2.8cm}
+\recordblank{5cm}
+\textbf{实验结论：}\par
+\recordblank{2.8cm}
+
+\textbf{7.4} 将P1旋转$20°$后旋转P2找到新的消光位置。
+
+\textbf{实验记录：}\par
+\recordblank{2.8cm}
+
+\textbf{说明：}两个快慢轴一致的 $\lambda/4$ 波片叠加等效于 $\lambda/2$ 波片，使偏振方向旋转$2\times20°=40°$。\\
+
+\textbf{7.5} 旋转其中一个 $\lambda/4$ 波片$90°$，再旋转P2找消光。
+
+\textbf{实验记录：}\par
+\recordblank{2.8cm}
+
+\textbf{说明：}此时两片波片一片快轴与另一片慢轴重合，两者相位延迟相互抵消，等效为各向同性（无双折射效应），线偏振光通过后偏振方向不变，P2只需与P1开始的相对角度为0即可消光。
+
+\subsubsection{研究椭圆偏振光和圆偏振光}
+\textbf{实验材料：}氦氖激光器，短焦距透镜，可变光阑，两个偏振片，$\lambda/4$波片。
+
+\textbf{8.1} 调节P1和P2至消光位置。
+
+\textbf{实验记录：}\par
+\recordblank{2.8cm}
+
+\textbf{8.2}
+\begin{itemize}
+    \item 放入 $\lambda/4$ 波片，旋转至消光重现（波片轴与P1平行）。
+    \item 将P1旋转$45°$（记录方向）。此时P1偏振方向与 $\lambda/4$ 波片轴成$45°$角。
+    \item 旋转P2观察光强变化。
+    \recordblank{5cm}
+    \par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+    
+    \textbf{说明：}线偏振光与 $\lambda/4$ 波片轴成$45°$角时，出射光为圆偏振光（$E_{0x}=E_{0y}$，相位差$\pi/2$），圆偏振光通过任意角度的偏振片后强度不变，因此P2旋转时无消光现象。
+\end{itemize}
+
+\textbf{8.3}
+\begin{itemize}
+    \item 在上述基础上再将P1额外旋转$10°$（总共偏离波片轴$55°$）。
+    \item 旋转P2观察光强变化。
+    \recordblank{6cm}
+    \par\noindent\textbf{实验现象：}\par
+\recordblank{4cm}
+    
+    \textbf{说明：}此时 $E_{0x} \neq E_{0y}$，出射光为椭圆偏振光，P2旋转时光强有周期性变化，但不能完全消光，这是椭圆偏振光的典型特征。
+\end{itemize}
+
+\subsection{实验结果}
+
+\recordblank{5.5cm}
+\subsection{实验过程中遇到的问题记录}
+\recordblank{5cm}
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{3cm}{0.4pt}\\
+	\hline
+	日期：& \rule{3cm}{0.4pt} & 评分：& \rule{3cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\nsection{大学物理实验-}{偏振光实验}{分析与讨论}
+\subsection{分析与讨论}
+\subsubsection{实验一：交叉线性偏振片分析}
+\recordblank{3.2cm}
+\subsubsection{实验二：马吕斯定律的验证}
+\recordblank{3.2cm}
+\subsubsection{实验三：布儒斯特角的计算}
+\recordblank{3.2cm}
+\subsubsection{实验四：散射光偏振分析}
+\recordblank{3.2cm}
+\subsubsection{实验五至七：波片效应的验证}
+\recordblank{3.2cm}
+\subsubsection{实验八：圆偏振光和椭圆偏振光的验证}
+\recordblank{3.2cm}
+\subsection{实验后思考题}
+\begin{question}
+说明用偏振片观察透过水中倒入的少许粉末后的现象产生的原因。
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+请说明 3D 眼镜和 3D 电影的原理。
+\end{question}
+\answerblank[3.8cm]
+
+
+
+
+\begin{question}
+通过实验现象，证实光的反射规律为：产生部分偏振光；必然产生线性偏振光。
+\end{question}
+\answerblank[3.8cm]
+
+\clearpage
+\appendix
+\appendixpage
+\addappheadtotoc
+\subsection{实验报告记录与教师、助教签名}
+\recordblank{5.5cm}
+\subsection{桌面照片}
+\recordblank{5.5cm}
+\end{document}

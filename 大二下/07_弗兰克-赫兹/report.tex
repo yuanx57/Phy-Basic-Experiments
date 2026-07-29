@@ -1,0 +1,329 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   作者：Huanyu Shi，2019级
+%   知乎：https://www.zhihu.com/people/za-ran-zhu-fu-liu-xing
+%   Github：https://github.com/huanyushi/SYSU-SPA-Labreport-Template
+%   Last update : 2023.4.10
+% ----------------------------------------------------
+
+\input{Settings}
+
+% Share-version redaction helpers
+\newcommand{\answerblank}[1][3.8cm]{%
+  \par\nopagebreak[4]\noindent\textbf{答：}\par\nopagebreak[4]\vspace*{#1}}
+\newcommand{\recordblank}[1]{%
+  \par\noindent\rule{0.95\linewidth}{0pt}\rule{0pt}{#1}\par}
+\newcommand{\privateimage}[2]{%
+  \rule{#1}{0pt}\rule{0pt}{#2}}
+ % 导入模板的相关设置
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\begin{document}
+
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{
+		|X|X|X|X
+		|X|X|X|X|}
+	\hline
+	\multicolumn{2}{|c|}{预习报告}&\multicolumn{2}{|c|}{实验记录}&\multicolumn{2}{|c|}{分析讨论}&\multicolumn{2}{|c|}{总成绩}\\
+	\hline
+20分	& & 30分& & 30分& & & \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt}   & 学号： & \rule{3cm}{0.4pt} \\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\begin{center}
+	\LARGE 基础物理实验 \quad CA2 夫兰克-赫兹实验实验报告
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：（提前一周）认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用（强烈建议到实验室预习），完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（第一循环实验已由教师提供模板，可以打印）。预习成绩低于10分（共20分）者不能做实验。
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得输入电脑打印，但可扫描手记后打印扫描件）；离开前请实验教师检查记录并签名。
+	    \item 分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。
+	\end{enumerate}
+	\textbf{实验报告就是将预习报告、实验记录、和数据处理与分析合起来，加上本页封面。}
+	\item 每次完成实验后的一周内交\textbf{实验报告}（特殊情况不能超过两周）。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+\end{enumerate}
+
+\clearpage
+
+\setcounter{section}{0}
+\section{基础物理实验  \quad CA2 夫兰克-赫兹实验  \heiti 预习报告}
+
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 从实验了解原子定态能级（量子化），更好掌握量子力学的基础知识。
+	\item 训练建立微观物理过程与宏观物理量之间关系的能力。
+	\item （选）学习分解多因素，研究独立因素影响实验现象的规律。
+\end{enumerate}
+
+\subsection{实验内容}
+\begin{enumerate}
+	\item 用分立仪器和夫兰克-赫兹实验（氩）管搭建实验系统。（基础必做）
+	\item 测量氩原子的板极电流与第二栅极加速电压关系曲线，计算第一激发电位。（基础必做）
+	\item 研究第一栅极电压怎样影响板极电流及第一激发电位。（选，深入、研究型）
+	\item 理解夫兰克-赫兹实验管参数的设计依据；参考汞管测量汞原子第一激发电位精度。（选，提升、设计型）
+	\item 夫兰克-赫兹实验得到的氩原子第一激发电势能否被发光光谱验证？汞原子呢？要选哪个频段的光谱仪？（选，拓展）
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	% \setlength{\tabcolsep}{10mm}
+	\begin{tabular}{p{0.05\textwidth}|p{0.20\textwidth}|p{0.05\textwidth}|p{0.5\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，测量范围，测量精度等） \\
+	\hline
+	1& FH-Ar 实验管 &1 & 具体见实验管上说明 \\
+	2& 可编程直流稳压电源 &1 & GWINSTEK GPP-4323；4通道独立输出：CH1、CH2: 0\textasciitilde32V/0\textasciitilde3A；CH3: 0\textasciitilde5V/0\textasciitilde1A；CH4: 0\textasciitilde15V/0\textasciitilde1A；串联同步电压 0\textasciitilde64V，并联同步电流 0\textasciitilde6A \\
+	3& 多量程直流电源 & 1 & GWINSTEK PFR-100M；电压 0--250\,V，电流 0--2\,A，额定输出功率 100\,W \\
+	4& 微电流放大器 &1 & BroLight BEM-5710；电流测量范围：$10^{-8}$\textasciitilde$10^{-13}$\,A，共分6档 \\
+	5& NI myDAQ 数据采集器 &1 & 提供模拟输入(AI)、模拟输出(AO)、数字输入和输出(DIO)、音频、电源和数字万用表(DMM)功能 \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{实验原理}
+
+\subsubsection{原子能级量子化与实验背景}
+
+
+原子从一个定态跃迁到另一个定态须满足能量守恒：
+\begin{equation}
+	h\nu = E_n - E_m
+\end{equation}
+其中$h$为普朗克常数，$\nu$为辐射频率，$E_n$、$E_m$为原子能级。原子与电子碰撞同样可以交换能量发生跃迁：若原子从电子处获得能量$E_n-E_m$，电子则损失等量能量，对应加速电压满足：
+\begin{equation}
+	e\Delta V = E_n - E_m
+\end{equation}
+若原子从基态跃迁到第一激发态，则对应的$\Delta V$称为\textbf{第一激发电位}。
+
+\subsubsection{F-H 管结构与各极电压的作用}
+
+充氩气的夫兰克-赫兹管中设有阴极$K$、第一栅极$G_1$、第二栅极$G_2$和板极$P$，各极电压作用如下：
+\begin{itemize}
+	\item \textbf{灯丝电压$V_L$}：加热阴极产生热电子，阴极温度决定发射电子数量与初始能量分布。
+	\item \textbf{第一栅极电压$V_{G_1K}$}：将热发射电子从阴极周围及时拉出，使之持续进入加速区。存在最优值$V_{G_1K\_min}$：过小则电子不能持续供入；过大则将更多电子拉向$G_1$，使进入加速区的电子密度$\rho_e$下降，影响测量。
+	\item \textbf{第二栅极电压$V_{G_2K}$}：使$G_1$与$G_2$之间的电子加速，是实验中逐步扫描的变量。
+	\item \textbf{反向拒斥电压$V_{G_2P}$}：在$G_2$与板极$P$之间施加反向电场，只有动能不小于$eV_{G_2P}$的电子才能到达板极形成板极电流$I_P$。其值应在第一激发势附近，且不超过氩原子第一电离势（15.78\,eV）。
+\end{itemize}
+
+\subsubsection{$I_P \sim V_{G_2K}$曲线的形成机制}
+
+板极电流$I_P = A\rho_e v_e$，与到达板极的电子密度$\rho_e$及速度$v_e$正比。为使$I_P$更好反映电子动能变化，需合理选取$V_{G_1K}$使$\rho_e$基本不变。随$V_{G_2K}$从零逐渐增大，$I_P\sim V_{G_2K}$曲线出现规则峰谷起伏，机制如下：
+\begin{enumerate}
+	\item 当$V_{G_2K} - V_{G_1K\_min} \leq V_{G_2P}$时，电子不能到达板极，$I_P \approx 0$。
+	\item 当$V_{G_2K} - V_{G_1K\_min} > V_{G_2P}$后，$I_P$随$V_{G_2K}$增大而增大。
+	\item 当$(V_{G_2K} - V_{G_1K\_min})\cdot e > E_n - E_m$时，电子与氩原子发生\textbf{非弹性碰撞}，损失能量$E_n-E_m$，穿过$G_2$后动能不足以克服拒斥电场，$I_P$显著下降。
+	\item 随$V_{G_2K}$继续增大，电子碰后仍可再加速积累能量到达板极，$I_P$再次上升（$cd$段），直至发生二次碰撞出现第二个谷。
+	\item 以此类推，当$V_{G_2K}$增量为第一激发电位整数倍时，$I_P$每次下降，形成规则起伏的$I_P\sim V_{G_2K}$曲线；相邻峰（谷）间距即等于氩原子第一激发电位。
+\end{enumerate}
+
+谷底电流不为零且随$V_{G_2K}$整体上升的原因：碰撞自由程存在统计分布，自由程较长的电子获能高于激发能，碰撞后剩余动能仍可到达板极，形成"本底"电流；当电子能量超过第一电离势时，还会使氩原子电离，产生类似"雪崩"效应，使峰谷随$V_{G_2K}$整体上移。
+
+\subsection{实验安全注意事项}
+\begin{enumerate}
+	\item 连线时务必注意，接错线路容易损坏F-H管，连线前应仔细核对各极接线。
+	\item 连线时，$V_{G_2K}$加速电压端接高压，使用过程中请勿触碰接线端，防止触电。
+	\item 实验过程中改变电压参数时，注意电压不能过大；$V_{G_2K}$不得超过100\,V，$V_{G_2P}$不得超过15\,V。
+	\item 实验结束时，记录完最后一组数据后立即将$V_{G_2K}$归零，然后关闭电源输出，保护氩管。
+\end{enumerate}
+
+\subsection{实验方案与步骤}
+
+\subsubsection{控制参数及范围}
+
+参照厂家提供的参数，设置各通道工作电压，参考值见表~\ref{tab:params}。
+
+\begin{table}[htbp]
+	\centering
+	\caption{电压及电流参数设置参考值}
+	\label{tab:params}
+	\renewcommand\arraystretch{1.5}
+	\begin{tabular}{lcccc}
+	\toprule
+	Channel & Voltage Level (V) & Current Level (A) & OVP (V) & OCP (A) \\
+	\midrule
+	CH4/$V_L$       & 2\textasciitilde5   & 1.2   & 5   & 1.5   \\
+	CH1/$V_{G_1K}$  & 1\textasciitilde2.5 & 0.02  & 2.5 & 0.05  \\
+	CH2/$V_{G_2P}$  & 8\textasciitilde15  & 0.02  & 15  & 0.05  \\
+	$V_{G_2K}$      & 0\textasciitilde100 & 0.100 & 100 & 0.200 \\
+	\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsubsection{实验步骤}
+\begin{enumerate}
+	\item \textbf{实验系统连接}：按接线图连接F-H管各极——灯丝接CH4、$V_{G_1K}$接CH1、$V_{G_2P}$接CH2，$G_2$连PFR +极，$K$连PFR $-$极；板极$P$经微电流放大器BEM-5710接NI myDAQ。
+	\item \textbf{选择VISA端口}：打开设备管理器确认GPP-4323和PFR-100M的COM口编号，在LabVIEW程序界面正确填入。
+	\item \textbf{选择微电流量程}：在BEM-5710上先选低灵敏度档，预测试后调至合适量程。
+	\item \textbf{设置工作电压}：参照表~\ref{tab:params}设置各通道电压；在电源面板将USB采样率设为9600。
+	\item \textbf{自动测量}：在程序主界面设置$V_{G_2K}$起始、终止电压（0\textasciitilde100\,V）及步长，启动自动扫描并保存Excel文件。分别在出厂参数灯丝电压、高于出厂参数、低于出厂参数三种灯丝电压下各测一组，对比曲线。
+	\item \textbf{手动逐点测量}：按出厂参数设置工作电压，通过PFR-100M面板手动调节$V_{G_2K}$（从小到大单向调节，不反复，步长约1\,V，在BEM-5710上等待电流稳定后读取$I_P$及档位，逐点记录。记录完毕后立即将$V_{G_2K}$归零。
+\end{enumerate}
+
+
+\subsection{实验前思考题}
+
+\begin{question}
+	是否只要与原子发生碰撞的电子能量达到$E_n-E_m$，原子就会发生能级跃迁？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	从阴极发射出来的、但又不能抵达板极的那些电子，最后跑到哪里去了？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	（选）依据电荷守恒定理，本实验是否可以不测板极电流而监测$G_2$极电流？为什么实验没有这样设计？（深入）
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	实验测量为散点值，有什么方法可以精确得到$I_p\sim V_{G_2K}$曲线的峰值和谷值？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	假设F-H管内没有充装任何原子气体，$I_p$随$V_{G_2K}$是怎么变化的？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	（选，复习分子运动理论）求在电子与氩原子发生非弹性碰撞时，电子的速度分布和氩原子的速度分布。
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	（选，复习分子运动理论）推导证明，在发生弹性碰撞后，电子损失的能量与碰撞前自身的动能相比可忽略不计。
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	（选）当年没有现在这么精密的微电流放大器，如果是你，你会怎么测量板极电流（$I_p$）？
+\end{question}
+\answerblank[3.8cm]
+
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名： & \rule{2.5cm}{0.4pt}  & 学号：& \rule{3cm}{0.4pt} \\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点： & \rule{2.5cm}{0.4pt} \\
+	\hline
+	学生签名：& \rule{2.5cm}{0.4pt}& 评分： &\\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\section{基础物理实验  \quad CA2 夫兰克-赫兹实验 \heiti 实验记录}
+
+
+\textbf{【实验内容、步骤、结果】}
+
+\subsection{实验系统搭建与工作参数设置}
+
+按接线图将FH-Ar管各极连至对应电源通道（灯丝接CH4、$V_{G_1K}$接CH1、$V_{G_2P}$接CH2、$V_{G_2K}$接PFR-100M，板极经BEM-5710微电流放大器连至NI myDAQ），打开LabVIEW实验程序，在设备管理器中确认各COM口编号并正确填入程序界面。根据FH-Ar管上的出厂参数设置灯丝电压、$V_{G_1K}$、$V_{G_2P}$，选择合适的微电流量程。
+
+\subsection{自动测量：不同灯丝电压下$I_P\sim V_{G_2K}$曲线}
+\subsubsection{简述本次实验方法和过程}
+固定$V_{G_1K}$、$V_{G_2P}$为出厂推荐值，分别选取出厂值、高于出厂值、低于出厂值三个灯丝电压，用自动测量模式依次扫描$V_{G_2K}$从0至100\,V，记录三组$I_P\sim V_{G_2K}$数据文件。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\subsection{手动逐点测量：$I_P\sim V_{G_2K}$曲线}
+\subsubsection{简述本次实验方法和过程}
+按出厂参数设置工作电压，通过PFR-100M面板手动调节$V_{G_2K}$（从0\,V开始逐步增大，单向调节，不反复；步长约1\,V，在BEM-5710上等待电流稳定后读取$I_P$及档位，逐点记录。记录完最后一点后立即将$V_{G_2K}$归零。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\textbf{【实验过程中遇到的问题记录】}
+\recordblank{5cm}
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{3cm}{0.4pt}\\
+	\hline
+	日期：& \rule{3cm}{0.4pt} & 评分：& \rule{3cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\section{基础物理实验  \quad CA2 夫兰克-赫兹实验 \heiti 分析与讨论}
+\textbf{【分析与讨论】}
+\subsection{$I_P\sim V_{G_2K}$曲线图示与峰谷识别}
+\subsubsection{实验数据处理}
+\recordblank{3.2cm}
+\subsubsection{实验结果计算}
+\recordblank{3.2cm}
+\subsubsection{实验数据分析}
+\recordblank{3.2cm}
+\subsection{不同灯丝电压对$I_P\sim V_{G_2K}$曲线影响}
+\subsubsection{实验数据处理}
+\recordblank{3.2cm}
+\subsubsection{实验数据分析}
+\recordblank{3.2cm}
+\subsection{误差分析}
+\recordblank{3.2cm}
+\subsection{模型讨论}
+\recordblank{3.2cm}
+\clearpage
+\appendix
+\appendixpage
+\addappheadtotoc
+\subsection{实验报告与教师签名}
+\recordblank{5.5cm}
+\subsection{实验台照片}
+\recordblank{5.5cm}
+\subsection{原始数据}
+\recordblank{12cm}
+
+\end{document}

@@ -1,0 +1,243 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+
+\input{settings} % 导入模板的相关设置
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\newcommand{\recordblank}[1]{\par\vspace*{#1}\par}
+
+\begin{document}
+
+\scoresTable{}{}{}{}{}{}{}{}
+
+% \infoTable{专业}{年级}{姓名}{学号}{实验时间}{教师签名}
+\infoTable{}{}{}{}{}{} % 信息留空
+
+\begin{center}
+	\LARGE BC3 \quad 透镜组基本参数的测量
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：（提前一周）认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用（强烈建议到实验室预习），完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（第一循环实验已由教师提供模板，可以打印）。预习成绩低于10分（共20分）者不能做实验。
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得输入电脑打印，但可扫描手记后打印扫描件）；离开前请实验教师检查记录并签名。
+	    \item 分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。
+	\end{enumerate}
+	\textbf{实验报告就是将预习报告、实验记录、和数据处理与分析合起来，加上本页封面。}
+	\item 实验结束后完成实验报告，下次上课时交给带实验的教师（一周），最后一次实验结束一周后交实验报告。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+\end{enumerate}
+
+\textbf{【实验安全与实验室注意事项】}
+\begin{enumerate}
+	\item 实验中需带手套，尽量避免用手直接接触镜片的光学面。若不小心触摸了光学表面，需尽快用镜头纸或擦镜布擦拭干净。
+	\item 安装镜片时需在光学平台上尽量靠近台面的高度操作，以免失手跌落摔碎镜片。
+	\item 实验平台配件所用固定螺钉需拧紧，以免镜架晃动；但不可过紧，以免损坏。
+	\item 实验前需按仪器清单检查光学元件是否齐全，实验结束后按照顺序放回元件盒。
+\end{enumerate}
+
+\clearpage
+
+\setcounter{section}{0}
+\nsection{BC3}{透镜组基本参数的测量}{预习报告}
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 熟悉光具座及其附件的使用。
+	\item 了解透镜组基点的概念。
+	\item 掌握利用节点架进行透镜组基点的测量方法及其原理。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.20\textwidth}|p{0.05\textwidth}|p{0.55\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，规格等） \\
+	\hline
+	1 & 白光光源 & 1 & GY-6型，亮度可调，即溴钨灯 \\
+	2 & 毫米尺 & 1 & 30mm，精度1mm \\
+	3 & 调节架 & 1 & --- \\
+	4 & 透镜$L_0$ & 1 & $F=150$mm \\
+	5 & 透镜架 & 1 & --- \\
+	6 & 节点架 & 1 & SZ-28 \\
+	7 & 凸透镜组 & 1 & $F=190$mm, $f=300$mm \\
+	8 & 测微目镜 & 1 & CW-1型，6mm，精度0.01mm \\
+	9 & 测微目镜架 & 1 & SZ-36 \\
+	10-14 & 平移底座 & 5 & --- \\
+	\hline
+	\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+	\subsubsection{利用节点性质测量透镜组参数}
+	本实验利用节点的特殊性质来确定基点位置和焦距。
+	若将透镜组置于节点架上，使透镜组的主光轴与节点架的旋转轴垂直相交。
+	\begin{enumerate}
+		\item 当平行光入射时，光线会聚于像方焦平面上的一点（像点）。
+		\item 如果节点架的旋转轴恰好通过透镜组的像方节点$N'$，根据节点性质，当透镜组绕该轴转动一个微小角度$\theta$时，入射光线方向不变，出射光线方向也应保持不变（仅发生微小平移，对于远处的像点或位于焦平面上的像点，这种平移可忽略）。
+		\item 因此，像点在像平面上的位置保持不动。
+	\end{enumerate}
+	\textbf{测量步骤原理：}
+	\begin{itemize}
+		\item 调节透镜组在节点架上的前后位置，直到转动节点架时，像点（毫米尺的像）在屏幕上不发生横向移动。此时，节点架的旋转轴即通过像方节点$N'$。
+		\item 此时记录节点架的位置，即确定了像方节点$N'$（也是像方主点$H'$）的位置。
+		\item 测量像屏（位于像方焦平面）到节点架转轴（像方主点）的距离，即为像方焦距$f'$。
+		\item 将透镜组倒转180度，重复上述步骤，可测得物方节点$N$（物方主点$H$）的位置及物方焦距$f$。
+	\end{itemize}
+
+\subsubsection{透镜组的基本参数（基点）}
+
+透镜组的基点包括焦点、主点和节点，这些是描述理想光具组光学性质的重要参数：
+
+\begin{itemize}
+	\item \textbf{焦点}：平行于主光轴的入射光线经透镜组后会聚（或发散）于主光轴上的点，称为像方焦点$F'$；反之，从物方焦点$F$发出的光线经透镜组后成为平行光束。物方焦点到物方主点的距离称为物方焦距$f$，像方主点到像方焦点的距离称为像方焦距$f'$。
+	
+	\item \textbf{主点}：一对共轭点，其横向放大率为+1。物方主点$H$和像方主点$H'$是计算物距和像距的起点。
+	
+	\item \textbf{节点}：一对共轭点，过物方节点$N$的入射光线和过像方节点$N'$的出射光线相互平行。节点的重要性质是：绕节点旋转透镜组时，像的位置不变。
+\end{itemize}
+
+\textbf{特殊情况}：当透镜组位于同一均匀介质中时（如空气中），节点与主点重合，即$N=H$，$N'=H'$。
+
+\subsubsection{本实验的主要误差来源？如何减小误差？}
+	\textbf{主要误差来源：}
+	\begin{enumerate}
+		\item \textbf{成像清晰度判断误差}：人眼判断像是否清晰存在主观性，这是本实验最主要的误差来源。
+		\item \textbf{共轴调节误差}：光学元件不完全共轴会导致测量偏差。
+		\item \textbf{节点位置判断误差}：判断转动时像无横向移动存在一定的主观性。
+		\item \textbf{读数误差}：毫米尺和节点架导轨的读数精度有限。
+		\item \textbf{透镜质量}：透镜本身的像差和制造误差。
+	\end{enumerate}
+	
+	\textbf{减小误差的方法：}
+	\begin{enumerate}
+		\item \textbf{多次测量求平均}：这是减小随机误差最有效的方法。
+		\item \textbf{仔细调节共轴}：确保所有光学元件的光轴在同一直线上。
+		\item \textbf{选择合适的观察条件}：适当调节光源亮度，在较暗的环境中更容易判断成像清晰度。
+		\item \textbf{小心读数}：读数时视线应垂直于标尺，避免视差。
+		\item \textbf{旋转角度要小}：判断节点位置时，节点架转动角度不宜过大。
+	\end{enumerate}
+
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	学生签名：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	实验时间：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\nsection{BC3}{透镜组基本参数的测量}{实验记录}
+
+\subsection{仪器用具记录}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.20\textwidth}|p{0.05\textwidth}|p{0.55\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，规格等） \\
+	\hline
+	1 & 白光光源 & 1 & GY-6型，亮度可调，即溴钨灯 \\
+	2 & 毫米尺 & 1 & 30mm，精度1mm \\
+	3 & 调节架 & 1 & --- \\
+	4 & 透镜$L_0$ & 1 & $F=150$mm \\
+	5 & 透镜架 & 1 & --- \\
+	6 & 节点架 & 1 & SZ-28 \\
+	7 & 凸透镜组 & 1 & $F=190$mm, $f=300$mm \\
+	8 & 测微目镜 & 1 & CW-1型，6mm，精度0.01mm \\
+	9 & 测微目镜架 & 1 & SZ-36 \\
+	10-14 & 平移底座 & 5 & --- \\
+	\hline
+	\end{tabular}
+\end{table}
+
+
+
+\subsection{实验内容和步骤}
+
+\subsubsection{透镜组节点和焦距的测定}
+
+\begin{enumerate}
+	\item 先借助平面镜，用"自准法"调节毫米尺与准直物镜$L_0$的距离，使毫米尺位于$L_0$的物方焦平面上，则通过$L_0$的光束为平行光。
+	
+	\item 加入透镜组（$L_1+L_2$）和白屏或测微目镜，调共轴，找到节点。提示：$L_1$和$L_2$之间的距离取6cm。
+	
+	\item 沿节点架导轨前后移动透镜组（需保持$L_1$和$L_2$之间的距离不变），同时相应地前后移动测微目镜，直至节点架绕z轴作角度不大的转动时，毫米尺无横向移动，此时像方节点$N'$即在节点架的转轴上。
+	
+	\item 用白屏取代测微目镜接收毫米尺像，沿光轴前后移动白屏至毫米尺的像最清晰。分别记录：
+	\begin{itemize}
+		\item 屏的位置$a$
+		\item 节点架转轴中心（即像方节点$N'$）的位置$b$
+		\item 从节点架导轨上读出透镜组中心位置与节点架转轴中心的偏移量$d$
+	\end{itemize}
+\end{enumerate}
+
+\subsection{实验数据记录}
+\recordblank{18cm}
+\clearpage
+\recordblank{5.0cm}
+\subsection{实验过程中遇到的问题记录}
+\recordblank{5.0cm}
+\clearpage
+\noindent\begin{minipage}{\textwidth}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	日期：& \rule{2.5cm}{0.4pt} & 评分：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\vspace{0.8em}
+\nsection{BC3}{透镜组基本参数的测量}{分析与讨论}
+\subsection{实验数据分析}
+\subsubsection{透镜组焦距的计算}
+\recordblank{3.5cm}
+\end{minipage}
+
+\subsubsection{不确定度分析}
+\recordblank{3.5cm}
+\subsubsection{理论值比较}
+\recordblank{3.5cm}
+\subsection{透镜组各基点的相对位置图}
+\recordblank{3.5cm}
+\subsection{节点位置分析}
+\recordblank{3.5cm}
+\subsection{实验后思考题}
+
+\begin{question}
+透镜组基本参数测量，节点架绕Z轴做角度不大的转动时，毫米尺像无横向移动，此时像方节点$N'$在节点架转轴上，为什么？请解释其背后的物理原理（建议画出光路图说明）。
+\end{question}
+\recordblank{4cm}
+
+
+
+\begin{question}
+请给出透镜组节点和焦点（距）与其中两个透镜焦距及其间距的关系（作图并用公式说明）。
+\end{question}
+\recordblank{4cm}
+
+\clearpage
+\appendix
+\section{原始数据记录表}
+\recordblank{5.0cm}
+\end{document}

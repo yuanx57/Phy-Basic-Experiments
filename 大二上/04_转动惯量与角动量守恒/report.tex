@@ -1,0 +1,389 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+
+\input{settings} % 导入模板的相关设置
+\usepackage{lipsum}
+
+\newcommand{\recordblank}[1]{\par\vspace*{#1}\par}
+
+\begin{document}
+
+\scoresTable{25}{}{30}{}{25}{}{80}{}
+
+% \infoTable{专业}{年级}{姓名}{学号}{实验时间}{教师签名}
+\infoTable{}{}{}{}{}{} % 信息留空
+
+\begin{center}
+	\LARGE 转动惯量测量和角动量守恒验证
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：课前认真研读实验讲义，弄清实验原理；实验所需的仪器设备、用具及其使用、完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（可以参考实验报告模板，可以打印）。（25分）
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得手记的值输入到电脑打印）；离开前请实验教师检查记录并签名。（30分）
+	    \item 数据处理及分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），结合误差理论的课程内容，对所有测量数据进行误差分析，转动惯量理论值、实验值、转动惯量变化前后的角动量测量值均用$A\pm\delta A$的形式表示，分析转动惯量理论值和实验值是否在误差范围内吻合，转动惯量变化前后的角动量测量值是否在误差范围内吻合；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。（25分）
+	\end{enumerate}
+	实验报告就是将预习报告、实验记录、和数据处理与分析讨论合起来，加上本页封面。（80分）
+	\item 注意事项：
+	\begin{enumerate}
+		\item 实验前：要预习，明确实验目的和达成的目标；
+		\item 实验中：取、放和安装待测物体时要轻拿轻放，不得摔碰；
+		\item 不得随意拿取其它实验台的部件，如有缺失，请及时举手告知老师；
+		\item 平台转动前，应注意保持转轴在垂直方向，即注意调节A型基座水平；
+		\item 实验后：仔细分析处理数据，认真撰写实验报告。
+	\end{enumerate}
+\end{enumerate}
+
+
+\setcounter{section}{0}
+\nsection{实验一}{测量圆盘和圆环的转动惯量}{预习报告}
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 通过实验测量出圆环和圆盘的转动惯量；
+	\item 验证实验测量值与理论计算值是否一致；
+	\item 掌握用转矩法测量转动惯量的方法。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{>{\centering\arraybackslash}p{0.05\textwidth}|
+					>{\centering\arraybackslash}p{0.20\textwidth}|
+					>{\centering\arraybackslash}p{0.05\textwidth}|
+					>{\centering\arraybackslash}p{0.5\textwidth}}
+	\hline
+	编号 & 仪器用具名称 & 数量 & 主要参数（型号，测量范围，测量精度等） \\
+	\hline
+	1 & DataStudio程序 & 1 & 数据采集与分析软件 \\
+	2 & PASCO接口 & 1 & 数据采集接口 \\
+	3 & 转动惯量组件 & 1 & ME-8953 \\
+	4 & 天平 & 1 & 精度0.1g \\
+	5 & 游标卡尺 & 1 & 精度0.02mm \\
+	6 & 质量块和悬挂装置 & 1套 & 提供摩擦补偿和已知力矩 \\
+	\hline
+	\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+
+\subsubsection{理论转动惯量}
+
+围绕其质量中心转动的\textbf{圆环}的转动惯量为：
+\begin{equation}
+	I_{\text{环}} = \frac{1}{2}M(R_1^2 + R_2^2)
+\end{equation}
+其中$M$为圆环的质量，$R_1$为圆环的内径，$R_2$为圆环的外径。
+
+\textbf{圆盘绕其质心}的转动惯量为：
+\begin{equation}
+	I_{\text{盘}} = \frac{1}{2}MR^2
+\end{equation}
+其中$M$为圆盘的质量，$R$为圆盘的半径。
+
+\textbf{圆盘绕其直径}的转动惯量为：
+\begin{equation}
+	I_{\text{垂直}} = \frac{1}{4}MR^2
+\end{equation}
+
+\subsubsection{实验测量方法}
+
+由于$\tau = I\alpha$，因此：
+\begin{equation}
+	I = \frac{\tau}{\alpha}
+\end{equation}
+
+其中，$\alpha = a/r$是角加速度，$a$是线加速度，$r$是缠绕线的圆柱体半径。
+
+扭矩$\tau$由悬挂重物产生：
+\begin{equation}
+	\tau = rT
+\end{equation}
+
+其中$T$是线的张力。对悬挂质量$m$应用牛顿第二定律：
+\begin{equation}
+	\sum F = mg - T = ma
+\end{equation}
+
+解得：
+\begin{equation}
+	T = m(g - a)
+\end{equation}
+
+因此：
+\begin{equation}
+	\tau = rm(g-a)
+\end{equation}
+
+最终转动惯量的实验值为：
+\begin{equation}
+	I = \frac{\tau}{\alpha} = \frac{rm(g-a)}{a/r} = mr^2\left(\frac{g}{a}-1\right)
+\end{equation}
+
+其中$m$为悬挂质量减去摩擦质量后的有效质量。
+
+\newpage
+\nsection{实验二}{验证角动量守恒}{预习报告}
+
+\subsection{实验目的}
+将一个不旋转的圆环放到一个旋转的圆盘上，验证角动量守恒定律。
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.25\textwidth}|p{0.05\textwidth}|p{0.45\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数 \\
+	\hline
+	1 & DataStudio程序 & 1 & 数据采集与分析软件 \\
+	2 & PASCO接口 & 1 & 数据采集接口 \\
+	3 & 转动惯量配件 & 1 & ME-8953 \\
+	4 & 天平 & 1 & 精度0.1g \\
+	5 & 游标卡尺 & 1 & 精度0.02mm \\
+	\hline
+	\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+
+当圆环放到旋转圆盘上时，由于圆环受到的力矩与圆盘受到的力矩大小相等方向相反，系统没有净力矩。因此，角动量守恒：
+
+\begin{equation}
+	L = I_i\omega_i = I_f\omega_f
+\end{equation}
+
+初始时只有圆盘转动：
+\begin{equation}
+	I_i = \frac{1}{2}M_1R^2
+\end{equation}
+
+最终圆盘和圆环一起转动：
+\begin{equation}
+	I_f = \frac{1}{2}M_1R^2 + \frac{1}{2}M_2(r_1^2 + r_2^2)
+\end{equation}
+
+因此，最终角速度的理论值为：
+\begin{equation}
+	\omega_f = \frac{M_1R^2}{M_2(r_1^2 + r_2^2) + M_1R^2}\omega_i
+\end{equation}
+
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	学生签名：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	实验时间：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\nsection{实验一}{测量圆盘和圆环的转动惯量}{实验记录}
+
+\subsection{实验内容和步骤}
+
+\subsubsection{理论转动惯量的测量}
+\begin{enumerate}
+	\item 称量圆环和圆盘的质量；
+	\item 测量圆环的内外直径，计算半径$R_1$和$R_2$；
+	\item 测量圆盘直径，计算半径$R$。
+\end{enumerate}
+
+\subsubsection{计算摩擦力}
+\begin{enumerate}
+	\item 在DataStudio程序中，选择"智能滑轮（线性）"；
+	\item 在滑轮上的线末端悬挂小质量物体（如回形针）；
+	\item 开始监测数据，旋转盘使其开始移动；
+	\item 观察速度是否保持恒定；
+	\item 调整线上的质量，直到速度保持恒定；
+	\item 测量线端的质量并记录为"摩擦质量"。
+\end{enumerate}
+
+\subsubsection{求圆盘和圆环的加速度}
+\begin{enumerate}
+	\item 在滑轮上放置约50g的重物；
+	\item 设置速度与时间的图象显示；
+	\item 将线卷起并握住旋转平台；
+	\item 开始记录数据，让平台开始转动；
+	\item 让物体下降，在落地前停止记录；
+	\item 查看速度-时间图象，最佳拟合斜率即为加速度。
+\end{enumerate}
+
+\subsubsection{测量半径}
+用游标卡尺测量缠绕线的圆柱体的直径并计算半径。
+
+\subsubsection{求圆盘的加速度}
+将圆环从装置上取下，单独对圆盘重复上述步骤。注意：需要较少的摩擦质量，放置约30g的重物。
+
+\subsubsection{圆盘绕直径轴旋转}
+\begin{enumerate}
+	\item 将圆盘从轴上取下，侧向向上旋转；
+	\item 将轴插入圆盘边缘的"D"形孔之一，垂直方式安装圆盘；
+	\item 重复测量半径和求加速度的步骤。
+\end{enumerate}
+
+\subsection{实验数据记录}
+\recordblank{9.2cm}
+\subsection{实验结果}
+\recordblank{5.0cm}
+\subsection{实验过程遇到的问题记录}
+\recordblank{5.0cm}
+\nsection{实验二}{验证角动量守恒}{实验记录}
+
+\subsection{实验内容和步骤}
+
+\begin{enumerate}
+	\item 利用轨道上的方形质量将仪器调平；
+	\item 组装转动惯量组件，圆盘上有圆环压痕的一面应朝上；
+	\item 连接PASCO接口和电脑，打开DataStudio程序；
+	\item 启动角速度（rad/s）与时间（s）的图表显示；
+	\item 用手转动圆盘，开始记录数据；
+	\item 记录约25个数据点后，将圆环放到旋转的圆盘正上方；
+	\item 放上圆环后继续记录数据几秒钟，然后停止记录；
+	\item 查看转速与时间的关系图，使用智能工具确定碰撞前后的角速度；
+	\item 称量圆盘和圆环的重量并测量半径。
+\end{enumerate}
+
+\subsection{实验数据记录}
+\recordblank{7.0cm}
+\subsection{实验结果}
+\recordblank{7.0cm}
+\subsection{实验过程遇到的问题记录}
+\recordblank{5.0cm}
+\clearpage
+\noindent\begin{minipage}{\textwidth}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	日期：& \rule{2.5cm}{0.4pt} & 评分：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\vspace{0.8em}
+\nsection{实验一}{测量圆盘和圆环的转动惯量}{分析与讨论}
+\subsection{实验数据处理}
+\subsubsection{理论值计算}
+\recordblank{3.5cm}
+\end{minipage}
+
+\subsubsection{实验值计算}
+\recordblank{3.5cm}
+\subsection{实验结果}
+\recordblank{3.5cm}
+\subsection{实验结论}
+\recordblank{3.5cm}
+\nsection{实验二}{验证角动量守恒}{分析与讨论}
+\subsection{实验数据分析}
+\subsubsection{转动惯量计算}
+\recordblank{3.5cm}
+\subsubsection{角动量计算}
+\recordblank{3.5cm}
+\subsubsection{最终角速度理论值}
+\recordblank{3.5cm}
+\subsubsection{能量损失计算}
+\recordblank{3.5cm}
+\subsubsection{误差分析}
+\recordblank{3.5cm}
+\subsection{实验结论}
+\recordblank{3.5cm}
+\subsection{实验思考题}
+
+\begin{question}
+角速度的实验结果与理论一致吗？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+在碰撞过程中，旋转动能损失了多少百分比？
+\end{question}
+\recordblank{4cm}
+
+
+\clearpage
+\appendix
+\appendixpage
+\addappheadtotoc
+
+\subsection{实验数据表格模板}
+
+\begin{table}[H]
+	\renewcommand\arraystretch{2.0}
+	\caption{实验一：加速度多次测量记录表}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|X|}
+	\hline
+	测量项目 & 第1次 & 第2次 & 第3次 & 第4次 & 第5次 & 平均值 \\
+	\hline
+	环盘组合加速度$a_1$/(m/s$^2$) & & & & & & \\
+	\hline
+	单独圆盘加速度$a_2$/(m/s$^2$) & & & & & & \\
+	\hline
+	垂直圆盘加速度$a_3$/(m/s$^2$) & & & & & & \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\subsection{计算过程}
+\subsubsection{随机误差（A类不确定度）}
+
+单次测量标准偏差：
+\begin{equation}
+	\sigma = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})^2}
+\end{equation}
+
+平均值的标准不确定度：
+\begin{equation}
+	u_A = \frac{\sigma}{\sqrt{n}}
+\end{equation}
+
+\subsubsection{系统误差（B类不确定度）}
+
+仪器误差限：
+\begin{itemize}
+	\item 天平：$\Delta_{\text{天平}} = 0.1$g
+	\item 游标卡尺：$\Delta_{\text{卡尺}} = 0.02$mm
+\end{itemize}
+
+B类不确定度（均匀分布）：
+\begin{equation}
+	u_B = \frac{\Delta}{\sqrt{3}}
+\end{equation}
+
+\subsubsection{合成不确定度}
+
+\begin{equation}
+	u_c = \sqrt{u_A^2 + u_B^2}
+\end{equation}
+
+\subsubsection{间接测量的不确定度传递}
+
+对于函数$y = f(x_1, x_2, \ldots, x_n)$：
+\begin{equation}
+	u_y = \sqrt{\sum_{i=1}^{n}\left(\frac{\partial f}{\partial x_i}u_{x_i}\right)^2}
+\end{equation}
+
+\subsection{实验记录照片}
+
+\recordblank{7cm}
+
+\subsection{桌面整理照片}
+
+\recordblank{7cm}
+
+
+\end{document}

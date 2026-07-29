@@ -1,0 +1,335 @@
+%!TEX program = xelatex
+% 如果你有参考文献（myref.bib），请按 xelatex -> bibtex -> xelatex*2 的顺序进行编译
+
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   密里根油滴实验
+%   基于原模板修改适配
+% ----------------------------------------------------
+
+\input{settings} % 导入模板的相关设置
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\newcommand{\recordblank}[1]{\par\vspace*{#1}\par}
+
+\begin{document}
+
+\scoresTable{20}{}{30}{}{30}{}{80}{}
+
+% \infoTable{专业}{年级}{姓名}{学号}{实验时间}{教师签名}
+\infoTable{}{}{}{}{}{} % 信息留空
+
+\begin{center}
+	\LARGE 密里根油滴实验
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：课前认真研读实验讲义，弄清实验原理；实验所需的仪器设备、用具及其使用、完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（可以参考实验报告模板，可以打印）。（20分）
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得手记的值输入到电脑打印）；离开前请实验教师检查记录并签名。（30分）
+	    \item 数据处理及分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。（30分）
+	\end{enumerate}
+	实验报告就是将预习报告、实验记录、和数据处理与分析讨论合起来，加上本页封面。（80分）
+	\item 实验报告下次课交给带实验的老师，最后一次实验，结束一周后交给老师。
+	\item 注意事项：
+	\begin{enumerate}
+		\item 实验中\textcolor{red}{\textbf{禁止用手触摸极板，注意高压危险！}}
+		\item 喷雾器喷雾时，\textcolor{red}{\textbf{喷嘴出口要高于储油囊，每次喷1$\sim$2次即可，竖直放置、防止摔碎！}}
+		\item 计时时\textcolor{red}{\textbf{眼睛要平视刻度线，不要有夹角！}}
+	\end{enumerate}
+\end{enumerate}
+
+%\clearpage
+%\tableofcontents
+%\clearpage
+
+\setcounter{section}{0}
+\nsection{密里根油滴实验}{}{预习报告}
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 学习用油滴实验测量电子电荷的原理。
+	\item 利用静态法和动态法观测带电油滴的运动状态，测量不同带电油滴的电荷量，验证电荷的不连续性，测量电子电荷值$e$。
+	\item 了解CCD摄像机、光学系统的成像原理，了解显微测量方法以及视频信号处理技术的工程应用等。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.25\textwidth}|p{0.05\textwidth}|p{0.5\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，测量范围，测量精度等） \\
+	\hline
+	1&CCD显微密里根油滴仪 &1 & ZKY-MLG-6（包括视频监视器）\\
+
+	2&机油及喷雾器 &1 & 用于产生微小油滴，密度：981 kg/m$^3$（20°C） \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+
+实验原理基于带电油滴在重力场和均匀电场中的受力平衡和运动分析，通过重力推算电荷量的数值。按油滴运动方式分类，可分为静态（平衡）测量法和动态（非平衡）测量法。选择油滴而不使用水滴，是因为其不易蒸发，且电荷分布更加稳定同时密度相对适中，在空气中运动速度便于观察。
+
+\textbf{1. 静态（平衡）测量法}
+
+当油滴在两极板间受力达到平衡时，油滴静止或作匀速运动。设油滴的质量为$m$，所带电量为$q$，油滴半径为$r$，两极板间电压为$U$，极板间距为$d$。
+
+油滴受到的力有：
+\begin{itemize}
+	\item 重力：$F_G = mg = \frac{4}{3}\pi r^3 \rho_o g$（向下）
+	\item 电场力：$F_Q = q\frac{U}{d}$（方向取决于电荷极性）
+	\item 空气阻力（斯托克斯定律）：$F_r = 6\pi\eta rv$
+	\item 空气浮力：$F_b = \frac{4}{3}\pi r^3 \rho_{air} g$（向上，实际中常忽略）
+\end{itemize}
+
+其中$\rho_o$是油的密度，$\eta$是空气粘滞系数。
+
+当调节电压使油滴达到平衡时：
+\begin{equation}
+mg = q\frac{U}{d}
+\end{equation}
+
+要测定电荷量$q$，需要测定油滴质量$m$。通过测量油滴在无电场时的匀速下降运动来确定油滴半径：
+
+无电场时，重力与空气阻力平衡：
+\begin{equation}
+mg = 6\pi\eta rv_g
+\end{equation}
+
+结合$m = \frac{4}{3}\pi r^3 \rho_o$，得到油滴半径：
+\begin{equation}
+r = \sqrt{\frac{9\eta v_g}{2\rho_o g}}
+\end{equation}
+
+考虑到微小油滴的空气粘滞系数修正：
+\begin{equation}
+\eta' = \frac{\eta}{1+b/(pr)}
+\end{equation}
+
+其中$b$为修正系数，$p$为大气压强。
+
+平衡法测定电荷量的公式为：
+\begin{equation}
+q = \frac{18\pi d}{U} \left(\frac{\eta v_g}{2\rho_o g}\right)^{3/2} \frac{1}{[1+b/(pr)]^{3/2}}
+\label{equ:balance_method}
+\end{equation}
+
+在匀速下降中，$v_g = L/t_g$，$L$为下落距离，$t_g$为下落时间。则采用平衡法测量的电荷量公式为：
+\begin{equation}
+q=\frac{18 \pi}{\sqrt{2 \rho_o g}}\left[\frac{\eta L}{t_g[1+(b / p a)]}\right]^{3 / 2} \frac{d}{U}
+\label{equ:balance_formula}
+\end{equation}
+
+
+\textbf{2. 动态（非平衡）测量法}
+
+在平行极板上加适当电压，使油滴受静电力作用加速上升。当空气阻力、重力、静电力达到平衡时，油滴以速度$v_e$匀速上升：
+
+\begin{equation}
+6\pi r\eta v_e = q\frac{U}{d} - mg
+\end{equation}
+
+结合无电场下降平衡方程$mg = 6\pi r\eta v_g$，可得：
+\begin{equation}
+\frac{v_e}{v_g} = \frac{qU/d - mg}{mg}
+\end{equation}
+
+解得电荷量：
+\begin{equation}
+q = mg\frac{d}{U}\left(1+\frac{v_e}{v_g}\right)
+\label{equ:dynamic_method}
+\end{equation}
+
+动态法的理论公式为：
+\begin{equation}
+q=\frac{18 \pi}{\sqrt{2 \rho_o g}}\left[\frac{\eta L}{1+b /(p r)}\right]^{3 / 2} \frac{d}{U}\left(\frac{1}{t_e}+\frac{1}{t_g}\right)\left(\frac{1}{t_g}\right)^{1 / 2}\label{equ:dynamic_formula}
+\end{equation}
+
+其中$t_g$是下落时间，$t_e$是上升时间。
+
+\subsection{实验前思考题}
+
+\begin{question}
+密里根利用油滴测定电子电荷的基本原理是什么？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+什么是静态（平衡）测量法和动态（非平衡）测量法？两种方法有何不同与优缺点？测量中需要注意哪些问题？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+为什么必须保证油滴在测量范围内做匀速运动或静止？怎样控制油滴运动？
+\end{question}
+\recordblank{4cm}
+
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	学生签名：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	实验时间：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\nsection{密里根油滴实验}{}{实验记录}
+
+\subsection{实验内容和步骤}
+
+\textbf{1. 调整油滴实验仪}
+\begin{enumerate}
+	\item 水平调整：调整实验仪主机的调平螺钉，直到水准泡处于中心位置
+	\item 打开电源：开启实验仪电源及监视器电源
+	\item 参数设置：设置实验方法、重力加速度、油密度、大气压强、下落距离等参数
+	\item CCD系统调整：打开进油量开关，喷入油雾，调节显微镜焦距使成像清晰
+\end{enumerate}
+
+\textbf{2. 学习控制油滴运动}
+\begin{enumerate}
+	\item 选择合适油滴：选择半径0.5-1μm、下落速度0.2-0.5格/s的油滴
+	\item 调整平衡电压：使油滴平衡在200-400V电压范围内
+	\item 熟悉按键操作：
+	   \begin{itemize}
+	   \item "0V/工作"键：切换极板电压
+	   \item "平衡/提升"键：控制电压大小
+	   \item "计时"键：开始/结束计时
+	   \item "确认"键：保存测量数据
+	   \end{itemize}
+\end{enumerate}
+
+\textbf{3. 平衡法测量步骤}
+\begin{enumerate}
+	\item 将油滴平衡在最上面格线，调整平衡电压200-400V
+	\item 切换至"0V"，油滴开始下降
+	\item 当油滴到达"0"标记格线时，按下计时键开始计时
+	\item 当油滴到达距离标记格线（1.6mm）时，按下计时键停止计时
+	\item 按"确认"键保存平衡电压和下降时间数据
+	\item 将油滴提升到顶部，重新调整平衡电压，重复测量5次
+\end{enumerate}
+
+\textbf{4. 动态法测量步骤}
+\begin{enumerate}
+	\item 第一步：测量下降过程（同平衡法步骤2-4）
+	\item 第二步：调节电压使油滴上升，当油滴从距离标记格线上升到"0"标记格线时计时
+	\item 保存上升电压、下降时间和上升时间数据
+	\item 重复完整的两步测量5次
+\end{enumerate}
+
+\subsection{实验数据记录}
+\recordblank{5.0cm}
+\subsection{原始数据记录}
+\recordblank{18cm}
+\clearpage
+\recordblank{18cm}
+\clearpage
+\recordblank{10.1cm}
+\subsection{实验过程中遇到的问题及解决方法}
+\recordblank{5.0cm}
+\clearpage
+\noindent\begin{minipage}{\textwidth}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	日期：& \rule{2.5cm}{0.4pt} & 评分：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\vspace{0.8em}
+\nsection{密里根油滴实验}{}{分析与讨论}
+\subsection{实验数据分析}
+\recordblank{3.5cm}
+\end{minipage}
+
+\textbf{实验后思考题：}
+\begin{question}
+试分析本实验的主要误差来源。
+\end{question}
+\recordblank{4cm}
+\clearpage
+\begin{question}
+密立根油滴实验的总结（油滴筛选、跟踪、测量等方面的经验分享）
+\end{question}
+\recordblank{4cm}
+
+\clearpage
+% ---------------------------------------------------------------------
+%   参考文献
+%   注：使用参考文献时应按照xelatex->bibtex->xelatex->xelatex顺序进行编译
+% \phantomsection
+% \addcontentsline{toc}{section}{参考文献}
+% \bibliographystyle{unsrt}
+% \bibliography{myref}
+
+\clearpage
+\appendix
+\appendixpage
+\addappheadtotoc
+
+\subsection{实验完成后的桌面照片}
+
+\recordblank{7cm}
+
+\vspace{5cm}
+
+\subsection{相关物理常数}
+\begin{table}[H]
+\centering
+\renewcommand\arraystretch{1.5}
+\caption{实验相关物理常数}
+\begin{tabularx}{\textwidth}{|X|X|X|}
+\hline
+\textbf{物理量} & \textbf{数值} & \textbf{备注} \\
+\hline
+电子基本电荷$e$ & $1.602 \times 10^{-19}$ C & 国际公认值 \\
+\hline
+重力加速度$g$ & $9.785$ m/s$^2$ & 珠海地区 \\
+\hline
+空气密度$\rho_{air}$ & $1.29$ kg/m$^3$ & 标准状态下 \\
+\hline
+实验用油密度$\rho_o$ & $981$ kg/m$^3$ & 20°C钟表油 \\
+\hline
+空气粘度系数$\eta$ & $1.83 \times 10^{-5}$ kg/(m·s) & 20°C时 \\
+\hline
+修正系数$b$ & $0.00823$ N·m & 粘度修正系数 \\
+\hline
+标准大气压$p$ & $101325$ Pa & 标准大气压 \\
+\hline
+极板间距$d$ & $5.0 \times 10^{-3}$ m & 仪器参数 \\
+\hline
+测量距离$L$ & $1.6 \times 10^{-3}$ m & 默认设置 \\
+\hline
+\end{tabularx}
+\end{table}
+
+
+\recordblank{7cm}
+
+
+\recordblank{7cm}
+
+
+\recordblank{7cm}
+
+\end{document}

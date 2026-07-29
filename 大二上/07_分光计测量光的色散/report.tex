@@ -1,0 +1,208 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+
+\input{settings} % 导入模板的相关设置
+\usepackage{lipsum}
+
+\newcommand{\recordblank}[1]{\par\vspace*{#1}\par}
+
+\begin{document}
+
+\scoresTable{25}{}{30}{}{25}{}{80}{}
+
+\infoTable{}{}{}{}{}{} % 信息留空
+
+\begin{center}
+	\LARGE 分光计测量光的色散
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：课前认真研读实验讲义，弄清实验原理；实验所需的仪器设备、用具及其使用，完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格。（25分）
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分}}；离开前请实验教师检查记录并签名。（30分）
+	    \item 数据处理及分析讨论：处理实验原始数据，对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题）；最后得出结论。（25分）
+	\end{enumerate}
+	\item 实验报告下次课交给带实验的老师，最后一次实验，结束一周后交给老师。
+	\item 注意事项：
+	\begin{enumerate}
+		\item 实验中禁止用手触摸或擦拭光栅和平面镜等光学元件；
+		\item 汞灯不用时请关闭，以防止汞灯的紫外长时间直射到眼睛！
+	\end{enumerate}
+\end{enumerate}
+
+\clearpage
+
+\setcounter{section}{0}
+\nsection{TP04}{分光计测量光的色散}{预习报告}
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 了解分光计的原理，掌握分光计的调节方法；
+	\item 掌握用分光仪测量棱镜的顶角的方法；
+	\item 掌握用最小偏向角法测量棱镜的折射率；
+	\item 学会用分光仪观察光谱，研究光的色散。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.20\textwidth}|p{0.05\textwidth}|p{0.5\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，测量范围，测量精度等） \\
+	\hline
+	1 & 分光计 & 1 & JY1型，游标精度：1' \\
+	
+	2 & 三棱镜 & 1 & 玻璃材质 \\
+	
+	3 & 平面镜 & 1 & 用于调节分光计 \\
+	
+	4 & 氢氘灯 & 1 & 主要谱线：氢（656.28nm, 486.13nm, 434.05nm, 410.18nm）；氘（656.11nm, 486.01nm, 433.93nm, 410.07nm） \\
+	
+	5 & 汞灯 & 1 & 主要谱线：313.2, 334.1, 365.0, 366.3, 404.7, 435.8, 456.1, 491.6, 577.0, 579.1, 623.4 nm \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+
+\subsubsection{光的色散}
+用一束近乎平行的白光通过玻璃棱镜时，在棱镜后面的屏上观察到一条彩色光带，这就是光的色散现象。不同频率的光（颜色不同）在同一介质中的传播速度$v$不同，折射率也不同。物质的折射率$n$可以表示为
+\begin{equation}
+	n = \frac{c}{v}
+\end{equation}
+其中$c$是真空中的光速。色散现象表现为物质的折射率随波长的变化，即折射率$n$可以表示为光波长$\lambda$的函数。折射率随波长的变化曲线，称为色散曲线。
+
+\subsubsection{最小偏向角法测三棱镜材料的折射率}
+一束单色光以$i_1$角入射到三棱镜的AB面上，经棱镜的两次折射后从AC面射出来，出射角为$i_2'$。入射光和出射光之间的夹角$\delta$称为偏向角。当棱镜的顶角$\alpha$一定时，偏向角$\delta$的大小随入射角$i_1$的变化而变化。而当$i_1=i_2'$时，$\delta$为最小，这时的偏向角称为最小偏向角记为$\delta_{\min}$。
+
+当入射光线经棱镜折射后以最小偏向角$\delta_{\min}$出射时满足以下关系：
+\begin{equation}
+	i_1 = i_2' = \frac{\alpha + \delta_{\min}}{2}
+\end{equation}
+
+设三棱镜材料折射率为$n_x$，空气的折射率$n_a=1$，则由折射定律可得：
+\begin{equation}
+	n_x = \frac{\sin\frac{\alpha+\delta_{\min}}{2}}{\sin\frac{\alpha}{2}}
+\end{equation}
+
+从上式可以看出，要求得棱镜材料的折射率$n_x$，必须测出其顶角$\alpha$和最小偏向角$\delta_{\min}$。
+
+\subsubsection{反射法测三棱镜的顶角$\alpha$}
+一束平行光入射于三棱镜，经过AB面和AC面反射的光线夹角$\beta$，由几何关系可知：
+\begin{equation}
+	\alpha = \frac{\beta}{2}
+\end{equation}
+
+
+\subsection{实验前思考题}
+
+\begin{question}
+分光计刻度盘的双游标起什么作用？如何用分光计测量角度？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+什么是最小偏向角？在实验中如何确定最小偏向角？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+产生全反射的条件是什么？作图说明光从三棱镜入射到出射是否会发生全反射现象？
+\end{question}
+\recordblank{4cm}
+
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	学生签名：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	实验时间：& \rule{2.5cm}{0.4pt} & 教师签名：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\nsection{TP04}{分光计测量光的色散}{实验记录}
+
+\subsection{实验内容和步骤}
+
+\subsubsection{操作1：调节分光计}
+\begin{enumerate}
+	\item 调节望远镜聚焦于无穷远
+	\item 调节望远镜光轴与分光计转轴垂直
+	\item 调节平行光管产生平行光
+	\item 调节平行光管光轴与分光计转轴垂直
+\end{enumerate}
+
+\subsubsection{操作2：反射法测量三棱镜的顶角$\alpha$}
+\recordblank{5.0cm}
+\subsubsection{操作3：测量最小偏向角}
+\begin{enumerate}
+	\item 平行光管对准汞灯
+	\item 找出棱镜分光后汞灯各谱线
+	\item 改变光的入射角，跟踪各谱线，找出最小偏向角位置
+	\item 记录入射光和出射光的方位角
+	\item 对不同波长的光谱线重复测量
+\end{enumerate}
+
+\subsection{实验数据记录}
+
+\subsubsection{反射法测量三棱镜的顶角}
+\recordblank{7.3cm}
+\subsubsection{汞灯谱线最小偏向角的测量}
+\recordblank{5.0cm}
+\clearpage
+\noindent\begin{minipage}{\textwidth}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	日期：& \rule{2.5cm}{0.4pt} & 评分：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\vspace{0.8em}
+\nsection{TP04}{分光计测量光的色散}{分析与讨论}
+\subsection{实验数据分析}
+\subsubsection{三棱镜顶角的计算}
+\recordblank{3.5cm}
+\end{minipage}
+
+\subsubsection{三棱镜折射率的计算}
+\recordblank{3.5cm}
+\subsubsection{色散曲线的绘制}
+\recordblank{3.5cm}
+\subsection{误差分析}
+\recordblank{3.5cm}
+\subsection{实验后思考题}
+
+\begin{question}
+若平行光管的入射缝很宽，对测量有影响吗？为什么？
+\end{question}
+\recordblank{4cm}
+
+\begin{question}
+简述你在实验中都碰到了哪些问题。
+\end{question}
+\recordblank{4cm}
+
+\clearpage
+\appendix
+\section*{附录：实验报告记录}
+
+\recordblank{7cm}
+
+\end{document}

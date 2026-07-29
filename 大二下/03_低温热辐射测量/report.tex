@@ -1,0 +1,334 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   作者：Huanyu Shi，2019级
+%   知乎：https://www.zhihu.com/people/za-ran-zhu-fu-liu-xing
+%   Github：https://github.com/huanyushi/SYSU-SPA-Labreport-Template
+%   Last update : 2023.4.10
+% ----------------------------------------------------
+
+\input{Settings}
+
+% Share-version redaction helpers
+\newcommand{\answerblank}[1][3.8cm]{%
+  \par\nopagebreak[4]\noindent\textbf{答：}\par\nopagebreak[4]\vspace*{#1}}
+\newcommand{\recordblank}[1]{%
+  \par\noindent\rule{0.95\linewidth}{0pt}\rule{0pt}{#1}\par}
+\newcommand{\privateimage}[2]{%
+  \rule{#1}{0pt}\rule{0pt}{#2}}
+ % 导入模板的相关设置
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{float}
+\usepackage{tabularx}
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\begin{document}
+
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{
+		|X|X|X|X
+		|X|X|X|X|}
+	\hline
+	\multicolumn{2}{|c|}{预习报告}&\multicolumn{2}{|c|}{实验记录}&\multicolumn{2}{|c|}{分析讨论}&\multicolumn{2}{|c|}{总成绩}\\
+	\hline
+20分	& & 30分& & 30分& & & \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号： &\rule{3cm}{0.4pt} \\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\begin{center}
+	\LARGE 基础物理实验 \quad CC1 热辐射的测量
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：（提前一周）认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用（强烈建议到实验室预习），完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（第一循环实验已由教师提供模板，可以打印）。预习成绩低于10分（共20分）者不能做实验。
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得输入电脑打印，但可扫描手记后打印扫描件）；离开前请实验教师检查记录并签名。
+	    \item 分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。
+	\end{enumerate}
+	\textbf{实验报告就是将预习报告、实验记录、和数据处理与分析合起来，加上本页封面。}
+	\item 每次完成实验后的一周内交\textbf{实验报告}（特殊情况不能超过两周）。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+\end{enumerate}
+
+
+\clearpage
+
+\setcounter{section}{0}
+\section{基础物理实验  \quad CC1 热辐射的测量 \heiti 预习报告}
+
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 认识热辐射现象及其本质（普遍存在的一种能量转换与传递的形式）。
+	\item 认识影响热辐射强度的各种因素及其与热辐射强度的定量关系，包括：辐射体表面温度（验证斯特藩-玻尔兹曼定律）、辐射距离（面源辐射修正）、表面的发射系数等。
+	\item 了解热辐射传感器（SMTIR9902）原理和结构、使用（含校正）方法。
+	\item 学习应用LabView管理由具有NI通信协议的非NI专业仪器（数字多用表）、设备（程控电源）构成的实验系统。
+	 
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	% \setlength{\tabcolsep}{10mm}
+	\begin{tabular}{p{0.05\textwidth}|p{0.20\textwidth}|p{0.05\textwidth}|p{0.5\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，测量范围，测量精度等） \\
+	\hline
+	1&黑体辐射与红外测量装置&1 &	DHRH-B：含带标尺（60cm）位移导轨、辐射器（三种辐射面：黑面、粗面、光滑金属面）、热辐射传感器（SMTIR9902）  \\
+
+	2&数字多用表 &2 &RIGOL DM3058E \\
+	
+	3&程控电源 & 1 & RIGOL DP831\\
+	
+	4&计算机&1 &已安装LabView和控温软件 \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+
+\subsubsection{黑体辐射与斯特藩-玻尔兹曼定律}
+
+热辐射是物体表面向外辐射连续电磁波的现象。斯特藩-玻尔兹曼定律描述了黑体的辐射本领 $R_T$ 与绝对温度 $T$ 的关系：
+\begin{equation}
+    R_T = \sigma T^4
+\end{equation}
+其中 $\sigma = 5.673 \times 10^{-12}\ \mathrm{W\,cm^{-2}\,K^{-4}}$ 为斯特藩-玻尔兹曼常数。对于非黑体，其辐射本领还需乘以发射系数（黑度）$\varepsilon$（$0 < \varepsilon \leq 1$）。
+
+实际实验中，热辐射传感器测得的是辐射体与传感器外壳之间的\textbf{净辐射}，故传感器输出电压 $\Delta V$ 正比于辐射体温度 $T_s$ 与传感器外壳温度 $T_{\mathrm{env}}$ 的四次方之差：
+\begin{equation}
+    \Delta V \propto \varepsilon (T_s^4 - T_{\mathrm{env}}^4)
+\end{equation}
+
+\subsubsection{热辐射传感器工作原理}
+
+热辐射传感器 SMTIR9902 由 $N$ 个串联的热电偶组成热电堆。热电偶一端（热端）与吸热面热接触，另一端（冷端）与传感器外壳热接触。当吸热面接收辐射后温度升高，热端与冷端之间产生温差，进而产生热电势。传感器输出电压 $\Delta V$ 与接收辐射功率 $\dot{Q}$ 的关系为：
+\begin{equation}
+    \Delta V = S \cdot \dot{Q}
+\end{equation}
+其中灵敏度 $S = 110 \pm 20\ \mathrm{V/W}$（@500K）。传感器接收面积 $A = 0.5\ \mathrm{mm^2}$，带有硅透镜以过滤可见光，仅对红外波段敏感。
+
+\subsubsection{辐射强度与距离的关系}
+
+对点辐射源（或远场条件），辐照度 $\dot{q}$ 遵从距离平方反比律：
+\begin{equation}
+    \dot{q} \propto \frac{1}{d^2}
+\end{equation}
+
+对于有限面积的\textbf{平面辐射源}，辐射传感器所在位置接收的总功率（辐照度）为：
+\begin{equation}
+    \dot{q} = \frac{\dot{q}_a}{2} \sin^2\alpha
+\end{equation}
+其中 $\alpha$ 满足 $\tan\alpha = R/d$，$R$ 为辐射面半径，$d$ 为辐射面到传感器的距离，$\dot{q}_a$ 为辐射面的面辐射功率密度。当 $d \gg R$ 时，$\sin\alpha \approx R/d$，公式退化为平方反比律；当传感器过近时（$d$ 较小），辐照度趋向饱和，不再遵从平方反比律。
+
+\subsubsection{实验系统概述}
+
+实验台由辐射体（内含陶瓷加热片和 PT1000 温度传感器）、热辐射传感器（SMTIR9902）、程控电源（RIGOL DP831）、数字多用表（RIGOL DM3058E）和计算机（运行 LabVIEW 控温程序）组成。系统采用 PID 控温，将辐射体稳定在设定温度，同时采集传感器输出电压。
+
+\subsection{实验前思考题}
+\begin{question}
+	人体热辐射会对SMTIR9902系列传感器读数产生影响（自己可验证），如何消除这种影响？日光灯呢？这种传感器是否适合测量高温热辐射，为什么？
+\end{question}
+\answerblank[3.8cm]
+
+
+
+\begin{question}
+	如果对辐射体制冷，使辐射表面温度低于室温，辐射传感器输出信号如何变化？
+\end{question}
+\answerblank[3.8cm]
+
+
+\begin{question}
+按辐射定律，处于室温的辐射体也有辐射，为何辐射传感器的输出信号为零？如果要直接测量辐射源的辐射强度（辐射传感器输出信号正比于辐射强度），环境（外壳）温度应该多高？是否可以通过数学方法扣除环境温度的影响？（传感器输出信号、传感器外壳温度与辐射强度之间是什么关系？提示，热辐射传感器内置Ni1000可以测量外壳的温度，其分度表见附录2）
+\end{question}
+\answerblank[3.8cm]
+
+
+
+
+\begin{question}
+辐射体的加热功率与辐射体温度之间呈何关系？与辐射传感器的信号值之间呈何关系？为什么？
+\end{question}
+\answerblank[3.8cm]
+
+
+
+\begin{question}
+	（选） （对防热辐射实验内容）透过防热辐射材料后的辐射强度随材料的厚度怎么变化？请推导并验证。
+
+\end{question}
+\answerblank[3.8cm]
+
+\clearpage
+
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline  
+	姓名：& \rule{2.5cm}{0.4pt} &学号：&\rule{3cm}{0.4pt} \\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点： & \rule{2.5cm}{0.4pt} \\
+	\hline
+	学生签名：&\rule{2.5cm}{0.4pt} & 评分： &\\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\section{基础物理实验  \quad  CC1 热辐射的测量\heiti 实验记录}
+
+
+\textbf{【实验内容、步骤、结果】}
+
+\subsection{测量物体的辐射面温度对物体辐射强度大小的影响}
+\subsubsection{简述本次实验方法和过程}
+
+选定某一固定辐射距离，安装好黑面辐射体并连接好 PT1000、加热器及传感器线路。启动 LabVIEW 控温程序，依次设定目标温度为 49℃、59℃、69℃、79℃、89℃、109℃ 等控温点，每个控温点等待温度稳定（测量温度与目标温度之差小于 $1^\circ\mathrm{C}$）至少 3 分钟后，记录传感器输出电压 $P$（$\mu$V）和电源输出功率（W）。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\subsection{测量物体在不同辐射距离S的辐射强度P}
+\subsubsection{简述本次实验方法和过程}
+
+将辐射体控温在某一稳定温度,然后依次将热辐射传感器移动到不同距离，每次移动后等待信号稳定，记录传感器输出电压 $P$（$\mu$V）。注意辐射面凹进隔热层 5 mm，需修正有效距离。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\subsection{测量不同物体表面的发射系数}
+\subsubsection{简述本次实验方法和过程}
+
+在固定辐射距离下，分别安装黑体面、黑面、粗糙面、光面辐射体，均控温在 $60^\circ\mathrm{C}$，稳定后在相同距离处测量传感器输出电压 $P$（$\mu$V）。通过比较各辐射面的 $P$ 值，可以推断其相对发射系数大小。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\textbf{【实验过程中遇到的问题记录】}
+\recordblank{5cm}
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{3cm}{0.4pt}\\
+	\hline
+	日期：& \rule{3cm}{0.4pt} & 评分：& \rule{3cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\section{基础物理实验  \quad  CC1 热辐射的测量\heiti 分析与讨论}
+\textbf{【分析与讨论】}
+\subsection{ 测量物体的辐射面温度对物体辐射强度大小的影响}
+\subsubsection{实验数据处理}
+\recordblank{3.2cm}
+\subsubsection{实验数据处理与结果表达}
+\recordblank{3.2cm}
+\subsubsection{实验结果计算}
+\recordblank{3.2cm}
+\subsubsection{实验数据分析}
+\recordblank{3.2cm}
+\subsection{测量物体在不同辐射距离S的辐射强度P}
+\subsubsection{实验数据处理}
+\recordblank{3.2cm}
+\subsubsection{实验数据处理与结果表达}
+\recordblank{3.2cm}
+\subsubsection{实验结果计算}
+\recordblank{3.2cm}
+\subsubsection{实验数据分析}
+\recordblank{3.2cm}
+\subsection{测量不同物体表面的发射系数}
+\subsubsection{实验数据处理与结果表达}
+\recordblank{3.2cm}
+\subsubsection{实验数据分析}
+\recordblank{3.2cm}
+\textbf{【实验后思考题】}
+
+
+\begin{question}
+	为何当热辐射传感器太靠近辐射表面时，所测出的辐射强度偏离距离平方反比规律？
+\end{question}
+\answerblank[3.8cm]
+
+
+
+\begin{question}
+	（选） SMTIR9902与SMTIR9902SIL各有什么特点？各适合于什么场景的非接触温度测量？为什么？
+\end{question}
+\answerblank[3.8cm]
+
+
+
+\begin{question}
+	辐射传感器输出信号与辐射表面绝对温度4次方成线性关系，为何直线不过原点？斯特藩-玻尔兹曼定律是否成立？为什么？
+\end{question}
+\answerblank[3.8cm]
+
+\begin{question}
+	（选） 如何评价材料（如透光隔热膜）的防热辐射能力及其在窗户应用中的节能效果？
+\end{question}
+\answerblank[3.8cm]
+
+
+
+\clearpage
+
+
+\clearpage
+\appendix
+\appendixpage
+\addappheadtotoc
+
+\subsection{实验记录}
+\recordblank{5.5cm}
+\subsection{实验照片}
+
+\recordblank{5cm}
+
+
+\subsection{实验台整理照片}
+\recordblank{5.5cm}
+\end{document}

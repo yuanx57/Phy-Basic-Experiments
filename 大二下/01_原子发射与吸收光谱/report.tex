@@ -1,0 +1,317 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   作者：Huanyu Shi，2019级
+%   知乎：https://www.zhihu.com/people/za-ran-zhu-fu-liu-xing
+%   Github：https://github.com/huanyushi/SYSU-SPA-Labreport-Template
+%   Last update : 2023.4.10
+% ----------------------------------------------------
+
+\input{Settings}
+
+% Share-version redaction helpers
+\newcommand{\answerblank}[1][3.8cm]{%
+  \par\nopagebreak[4]\noindent\textbf{答：}\par\nopagebreak[4]\vspace*{#1}}
+\newcommand{\recordblank}[1]{%
+  \par\noindent\rule{0.95\linewidth}{0pt}\rule{0pt}{#1}\par}
+\newcommand{\privateimage}[2]{%
+  \rule{#1}{0pt}\rule{0pt}{#2}}
+ % 导入模板的相关设置
+\usepackage{lipsum}
+\usepackage{booktabs}
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\begin{document}
+
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{
+		|X|X|X|X
+		|X|X|X|X|}
+	\hline
+	\multicolumn{2}{|c|}{预习报告}&\multicolumn{2}{|c|}{实验记录}&\multicolumn{2}{|c|}{分析讨论}&\multicolumn{2}{|c|}{总成绩}\\
+	\hline
+20分	& & 30分& & 30分& & & \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt}   & 学号： &\rule{3cm}{0.4pt} \\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\begin{center}
+	\LARGE 基础物理实验 \quad 原子的发射和吸收光谱观测分析实验报告
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由三部分组成：
+	\begin{enumerate}
+		\item 预习报告：（提前一周）认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用（强烈建议到实验室预习），完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（第一循环实验已由教师提供模板，可以打印）。预习成绩低于10分（共20分）者不能做实验。
+	    \item 实验记录：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}（不得输入电脑打印，但可扫描手记后打印扫描件）；离开前请实验教师检查记录并签名。
+	    \item 分析讨论：处理实验原始数据（学习仪器使用类型的实验除外），对数据的可靠性和合理性进行分析；按规范呈现数据和结果（图、表），包括数据、图表按顺序编号及其引用；分析物理现象（含回答实验思考题，写出问题思考过程，必要时按规范引用数据）；最后得出结论。
+	\end{enumerate}
+	\textbf{实验报告就是将预习报告、实验记录、和数据处理与分析合起来，加上本页封面。}
+	\item 每次完成实验后的一周内交\textbf{实验报告}（特殊情况不能超过两周）。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+\end{enumerate}
+
+\clearpage
+
+\setcounter{section}{0}
+\section{基础物理实验  \quad 原子的发射和吸收光谱观测分析 \heiti 预习报告}
+
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 学习光纤光谱仪的使用；
+	\item 观测钠原子光谱，了解碱金属原子光谱的一般规律；
+	\item 观测汞原子光谱，了解中外层电子与原子核相互作用；
+	\item 观测多种光源的发射光谱，了解线光谱与连续谱的异同；
+	\item 调配不同浓度的高锰酸钾水溶液，测量其紫外-可见吸收光谱，找出吸收峰；
+	\item 测量不同浓度高锰酸钾水溶液的紫外-可见吸收光谱，验证比尔定律；
+	\item 测量不同片数玻璃基板的透过光谱，验证朗伯定律。
+\end{enumerate}
+
+\subsection{仪器用具}
+\begin{table}[htbp]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.22\textwidth}|p{0.05\textwidth}|p{0.55\textwidth}}
+	\hline
+	编号& 仪器用具名称 & 数量 &  主要参数（型号，测量范围，测量精度等） \\
+	\hline
+	1& 光纤光谱仪 &1 & AvaSpec-ULS2048CL-EVO；测量波长范围 200--1100\,nm；测量精度 0.06$\sim$20\,nm \\
+
+	2& 多种光源 &各1 & 低压汞灯、低压钠灯、氢氘灯、溴钨灯、多种颜色发光二极管（LED） \\
+	
+	3& 滤光片 & 若干 & 白片、红片 \\
+	
+	4& 测控计算机及软件 &1 & 安装 AvaSoft8 光谱测量软件 \\
+
+	5& 高锰酸钾水溶液 & 若干 & 浓度：0.01\,g/L、0.015\,g/L、0.02\,g/L、0.05\,g/L、0.1\,g/L 及更高浓度 \\
+
+	6& 玻璃基板、比色皿 & 若干 & 光学级玻璃基板（多片），标准比色皿 \\
+	\hline
+\end{tabular}
+\end{table}
+
+\subsection{原理概述}
+
+\subsubsection{碱金属原子光谱}
+
+碱金属原子（如钠）与氢原子类似，核外只有一个价电子，但内部还有封闭壳层电子。内封闭壳层电子与原子核合称\textbf{原子实}。价电子在原子核与内部电子共同组成的力场中运动，当价电子轨道贯穿原子实时（称为贯穿轨道），由于原子实作用于价电子的电场与点电荷电场有显著差异，碱金属原子光谱线的波数公式修正为：
+
+\begin{equation}
+	\tilde{\nu} = R\left(\frac{1}{n_2^{*2}} - \frac{1}{n_1^{*2}}\right) = \frac{R}{(n' - \mu'_{l'})^2} - \frac{R}{(n - \mu_l)^2}
+\end{equation}
+
+其中，$\tilde{\nu}$ 为光谱线的波数；$R$ 为里德堡常数；$n'$ 与 $n$ 分别为始态和终态的主量子数；$n_2^*$ 与 $n_1^*$ 分别为始态和终态的有效量子数；$\mu'_{l'}$ 与 $\mu_l$ 分别为始态和终态的\textbf{量子缺}（量子亏损）。量子缺的大小直接反映原子实对价电子电场偏离点电荷近似的程度。
+
+钠原子光谱分为如下四个线系：
+\begin{itemize}
+	\item \textbf{主线系}：$np \to 3s$（$n=3,4,5,\cdots$），下能级为基态 $3s$，产生共振线（钠黄双线 589.0\,nm 与 589.6\,nm）；
+	\item \textbf{锐线系}：$ns \to 3p$（$n=4,5,6,\cdots$），各双线间波数差相等；
+	\item \textbf{漫线系}：$nd \to 3p$（$n=3,4,5,\cdots$），谱线轮廓弥漫；
+	\item \textbf{基线系}：$nf \to 3d$（$n=4,5,6,\cdots$），位于红外区。
+\end{itemize}
+
+各线系的共同特点：同一线系内，越向短波方向，相邻谱线的波数差越小（趋于连续谱边界），谱线强度越弱。由于 $p,d,f$ 能级因自旋-轨道耦合发生双重分裂，主线系与锐线系谱线为双线，漫线系和基线系为复双重线。
+
+\subsubsection{光吸收基本原理}
+
+物质的原子或分子吸收入射辐射能，从基态跃迁至激发态，吸收能量满足普朗克公式：
+\begin{equation}
+	E = h\nu
+\end{equation}
+其中 $h = 6.626\times10^{-34}$\,J$\cdot$s 为普朗克常量，$\nu$ 为辐射频率。若物质对某波段光的吸收不随波长变化，称为\textbf{一般吸收}；若吸收随波长显著变化，则称为\textbf{选择吸收}。紫外-可见光吸收光谱本质上是多原子分子价电子跃迁产生的电子光谱。
+
+\subsubsection{朗伯定律}
+
+平面光波在各向同性均匀媒质中传播时，光强随光程呈指数衰减：
+\begin{equation}
+	\frac{dI}{I} = -k\,dl
+\end{equation}
+对厚度为 $l$ 的介质积分得：
+\begin{equation}
+	I = I_0\,e^{-kl}
+\end{equation}
+其中 $k$ 为吸收系数（由媒质特性与波长决定），$I_0$ 为入射光强，$I$ 为透射光强。朗伯定律对所有均匀介质普遍成立。
+
+\subsubsection{比尔定律}
+
+对于溶液，吸收系数 $k$ 与溶液浓度 $c$ 成正比：$k = \alpha c$，其中 $\alpha$ 为与浓度无关的分子特性常数。引入\textbf{吸光度} $A = -\lg T = \lg(I_0/I)$（$T=I/I_0$ 为透过率），朗伯-比尔定律的数学形式为：
+\begin{equation}
+	A = \varepsilon c l
+\end{equation}
+其中 $\varepsilon$ 为摩尔吸光系数（$\varepsilon = \alpha/2.303$）。比尔定律仅在分子间相互作用可忽略（即低浓度）时成立；朗伯定律则普遍成立。
+
+\subsubsection{光纤光谱仪工作原理}
+
+光纤光谱仪（如 AvaSpec-ULS2048CL-EVO）采用光栅色散系统。光源发出的光经光纤导入，经准光镜准直后投射到平面衍射光栅上，利用光栅方程 $d(\sin\theta_i + \sin\theta_m) = m\lambda$ 将不同波长的光衍射至不同角度，再经物镜汇聚成像在 CMOS 探测器阵列上，由计算机读取各像素对应波长的光强，实现全波段光谱的同时探测。与传统摄谱仪相比，光纤光谱仪集成度高、操作简便，测量范围 200--1100\,nm。
+
+\subsection{实验安全注意事项}
+\begin{enumerate}
+	\item 光纤不能过度弯折，以防损坏光纤导光性能；信号强度不能超过饱和值（建议调至饱和值的 80\% 左右）。
+	\item 光源通电后会发热，小心烫手；切换光源时务必等断电冷却后再操作。
+	\item 测量的信号如严重偏离预期，请联系指导老师。
+	\item 高锰酸钾溶液具有强氧化性，操作时注意安全，避免接触皮肤。
+\end{enumerate}
+
+\subsection{实验前思考题}
+\begin{question}
+	日常生活中，光源可以分为热光源和冷光源，请分别说明太阳光、蜡烛、白炽灯、荧光
+	灯、 LED 灯等属于哪一类光源，为什么？
+\end{question}
+\answerblank[3.8cm]
+\begin{question}
+	光栅光谱仪是什么工作原理？请调研后作详细介绍。
+\end{question}
+\answerblank[3.8cm]
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名： & \rule{2.5cm}{0.4pt} & 学号：& \rule{3cm}{0.4pt}\\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点： & \rule{2.5cm}{0.4pt} \\
+	\hline
+	学生签名：&\rule{2.5cm}{0.4pt}& 评分： &\\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\section{基础物理实验  \quad 原子的发射和吸收光谱观测分析\heiti 实验记录}
+
+
+\textbf{【实验内容、步骤、结果】}
+
+\subsection{CA3.1 原子发射光谱的观测}
+
+\subsubsection{实验1：钠灯发射光谱的测量}
+
+\textbf{简述方法与过程：}
+
+将低压钠灯通过光纤连接至光纤光谱仪（AvaSpec-ULS2048CL-EVO），打开 AvaSoft8 软件，确认光谱仪正确连接（序列号显示为已激活）。打开钠灯，点击 Start 开始采集。使用 Auto Configuration 自动设置积分时间，手动微调使信号峰值约为饱和值的 80\%。记录并保存钠灯光谱数据及图像，找出特征谱线（钠黄双线等）并记录峰值波长。
+
+\textbf{实验数据记录：}
+\recordblank{5.5cm}
+\subsubsection{实验2：汞灯发射光谱的测量}
+
+\textbf{简述方法与过程：}
+
+将低压汞灯连接至光谱仪，方法同上。调节积分时间使信号强度约为饱和值的 80\%。记录汞灯光谱，找出各特征谱线（紫、蓝、绿、黄等），记录峰值波长，分析汞原子光谱的精细结构。
+
+\textbf{实验数据记录：}
+\recordblank{5.5cm}
+\subsection{CA3.1 多种光源光谱的观测}
+
+\subsubsection{实验3：实验室电灯与手机屏光谱测量}
+
+\textbf{简述方法与过程：}
+
+将光纤探头依次对准实验室电灯（LED 或荧光灯）和手机屏幕，调整积分时间至信号饱和值的 80\% 左右，分别记录光谱图像和数据，对比分析两种光源的光谱特征。
+
+\textbf{实验数据记录：}
+\recordblank{5.5cm}
+\subsection{CA3.2 原子吸收光谱的观测}
+
+\subsubsection{实验4 \& 5：高锰酸钾溶液吸收光谱测量（验证比尔定律）}
+
+\textbf{简述方法与过程：}
+
+配制浓度为 0.01、0.02、0.04、0.06、0.08、0.1\,g/L 等系列高锰酸钾水溶液。将溴钨灯连接光谱仪，以纯水为参考（存储 Reference 背景），关灯后存储 Dark 背景。选择吸光度（A）测量模式，依次将各浓度溶液置于比色皿支架上，记录各浓度溶液的吸光度曲线，确定吸收峰波长，读取特定波长处吸光度值，作吸光度-浓度关系曲线验证比尔定律。
+
+\textbf{实验数据记录：}
+\recordblank{5.5cm}
+\subsubsection{实验6：玻璃基板透过光谱测量（验证朗伯定律）}
+
+\textbf{简述方法与过程：}
+
+以溴钨灯为光源，用空气（无基板）作 Reference，依次在光路中叠加 1、2、3、4、5 片玻璃基板，在透过率（T）模式下记录各组透过光谱曲线。选取特定波长处读取透过率值，作 $\ln T$--厚度关系曲线验证朗伯定律。
+
+\textbf{实验数据记录：}
+\recordblank{5.5cm}
+\textbf{【实验过程中遇到的问题记录】}
+\recordblank{5cm}
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} & 年级：& \rule{2.5cm}{0.4pt}\\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt} & 学号：& \rule{3cm}{0.4pt}\\
+	\hline
+	日期：& \rule{3cm}{0.4pt} & 评分：& \rule{3cm}{0.4pt}\\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\section{基础物理实验  \quad 原子的发射和吸收光谱观测分析\heiti 分析与讨论}
+\textbf{【分析与讨论】}
+\subsection{钠灯与汞灯发射光谱分析}
+\subsubsection{钠灯光谱谱线归属分析}
+\recordblank{3.2cm}
+\subsubsection{汞灯光谱分析}
+\recordblank{3.2cm}
+\subsubsection{实验室电灯与手机屏光谱分析}
+\recordblank{3.2cm}
+\subsection{验证比尔定律}
+\subsubsection{吸收峰位置确定}
+\recordblank{3.2cm}
+\subsubsection{比尔定律验证}
+\recordblank{3.2cm}
+\subsection{验证朗伯定律}
+\subsubsection{朗伯定律验证}
+\recordblank{3.2cm}
+\textbf{【实验后思考题】}
+
+
+\begin{question}
+钠灯光谱有哪些特征？能否从光谱图上判别各谱线所属线系？举例说明。
+\end{question}
+\answerblank[3.8cm]
+\begin{question}
+	在发射光谱和吸收光谱测量中，光路有何异同？
+\end{question}
+\answerblank[3.8cm]
+\begin{question}
+	根据高锰酸钾溶液的吸收光谱，应如何选择理想光源，为什么？
+\end{question}
+\answerblank[3.8cm]
+\clearpage
+
+
+\clearpage
+\appendix
+\appendixpage
+\addappheadtotoc
+\subsection{原始数据}
+\recordblank{5cm}
+
+\subsection{实验台照片}
+\recordblank{5.5cm}
+\end{document}

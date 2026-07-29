@@ -1,0 +1,276 @@
+%!TEX program = xelatex
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   实验CD1 光学像差测量与分析实验
+% ----------------------------------------------------
+
+\input{Settings}
+
+% Share-version redaction helpers
+\newcommand{\answerblank}[1][3.8cm]{%
+  \par\nopagebreak[4]\noindent\textbf{答：}\par\nopagebreak[4]\vspace*{#1}}
+\newcommand{\recordblank}[1]{%
+  \par\noindent\rule{0.95\linewidth}{0pt}\rule{0pt}{#1}\par}
+\newcommand{\privateimage}[2]{%
+  \rule{#1}{0pt}\rule{0pt}{#2}}
+ % 导入模板的相关设置
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\begin{document}
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{
+		|X|X
+		|X|X|X|X|}
+	\hline
+	\multicolumn{2}{|c|}{预习报告}&\multicolumn{2}{|c|}{实验记录与分析}&\multicolumn{2}{|c|}{总成绩}\\
+	\hline
+	25分 & & 55分 & & 80分 & \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名：& \rule{2.5cm}{0.4pt}   & 学号： &  \rule{3cm}{0.4pt}\\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\begin{center}
+	\LARGE 基础物理实验 \quad 光学像差测量与分析实验报告
+\end{center}
+
+\textbf{【实验报告注意事项】}
+\begin{enumerate}
+	\item 实验报告由两部分组成：
+	\begin{enumerate}
+		\item 预习报告：课前认真研读\underline{\textbf{实验讲义}}，弄清实验原理；实验所需的仪器设备、用具及其使用，完成课前预习思考题；了解实验需要测量的物理量，并根据要求提前准备实验记录表格（可以参考实验报告模板，可以打印）。
+	    \item 实验记录与分析：认真、客观记录实验条件、实验过程中的现象以及数据。实验记录请用珠笔或者钢笔书写并签名（\textcolor{red}{\textbf{用铅笔记录的被认为无效}}）。\textcolor{red}{\textbf{保持原始记录，包括写错删除部分，如因误记需要修改记录，必须按规范修改。}}；离开前请实验教师检查记录并签名。
+	\end{enumerate}
+	\item 每次完成实验后的一周内交\textbf{实验报告}。
+	\item 除实验记录外，实验报告其他部分建议双面打印。
+	\item 注意事项：
+	\begin{enumerate}
+	\item 实验中需带手套，尽量避免用手直接接触镜片的光学面。若不小心触摸了光学表面，需尽快用镜头纸或擦镜布擦拭干净。
+	\item 安装镜片时需在光学平台上尽量靠近台面的高度操作，以免失手跌落摔碎镜片。
+	\item 实验平台配件所用固定螺钉需拧紧，以免镜架晃动；但不可过紧，以免损坏。
+	\item 实验前需按仪器清单检查光学元件是否齐全，实验结束后按照顺序放回元件盒。
+	\item 激光光源功率较强，严禁将激光束对准人眼，以免造成视网膜灼伤。
+\end{enumerate}
+
+\end{enumerate}
+
+
+\clearpage
+
+\setcounter{section}{0}
+\section{基础物理实验 \quad 光学像差测量与分析实验 \heiti 预习报告}
+
+	
+\subsection{实验目的}
+\begin{enumerate}
+	\item 了解七种几何像差产生的原理、基本规律；
+	\item 了解各种像差对光学成像质量的影响；
+	\item 掌握色差、慧差、像散产生的原理及其测量表征；
+	\item 掌握简单光学系统的基本调试方法。
+\end{enumerate}
+
+\subsection{原理概述}
+
+\subsubsection{基本概念}
+
+实际光学系统所成的像偏离理想光学系统（高斯光学）的误差称为\textbf{几何像差}。光学设计中将几何像差分为七种：球差、慧差、像散、场曲、畸变、位置色差和倍率色差。
+
+\subsubsection{色差}
+
+\textbf{位置色差}产生的根本原因是色散现象：不同波长的光在介质中的折射率不同，导致同一透镜对不同颜色的光有不同的焦距，轴上点的像沿光轴方向产生位移差。以C光（红光，$\lambda = 656.27\,\text{nm}$）和F光（蓝光，$\lambda = 486.13\,\text{nm}$）之间的像点轴向距离来量化位置色差：
+\begin{equation}
+	\Delta L'_{FC} = L'_F - L'_C
+\end{equation}
+其中 $L'_F$ 为F光的像距，$L'_C$ 为C光的像距。
+
+\subsubsection{慧差}
+
+慧差是\textbf{小视场、大孔径}条件下的像差。当光学系统不满足等晕条件时，轴外点发出的光束经光学系统后，不同孔径光线对主光线的对称性被破坏，导致焦面上形成彗星状弥散斑。子午慧差 $K'_t$ 定义为孔径边缘上下光线交点（$aa$点）到主光线焦点 $B'$ 的距离；弧矢慧差 $K'_s$ 定义为弧矢边缘光线交点（$bb$点）到 $B'$ 的距离。
+
+慧差同时依赖于\textbf{孔径}和\textbf{视场角}：孔径越大，视场角越大，慧差越显著。对于初级慧差，子午慧差约为弧矢慧差的三倍（$K'_t = 3K'_s$）。平凸透镜倾斜时相当于引入了等效的轴外视场，使光束斜入射，从而产生慧差。
+
+\subsubsection{像散}
+
+像散是\textbf{大视场、细光束}条件下的像差。当轴外细光束斜入射光学系统时，子午面内光线（$a$光线）与弧矢面内光线（$b$光线）的汇聚点不重合，分别形成垂直于子午面的\textbf{子午焦线}和垂直于弧矢面的\textbf{弧矢焦线}，两者之间的轴向距离即为像散：
+\begin{equation}
+	x'_{ts} = x'_t - x'_s
+\end{equation}
+其中 $x'_t$ 为子午场曲，$x'_s$ 为弧矢场曲。像散随视场角（入射倾斜角）的增大而增大。平凸透镜倾斜（凸面朝向入射光）时，随倾斜角增大，子午焦线与弧矢焦线的轴向间距增大，像散愈加显著。
+
+
+\subsection{仪器用具}
+\begin{table}[H]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\begin{tabular}{p{0.05\textwidth}|p{0.22\textwidth}|p{0.05\textwidth}|p{0.55\textwidth}}
+	\hline
+	编号 & 仪器用具名称 & 数量 & 主要参数（型号，测量范围，测量精度等） \\
+	\hline
+	1  & 激光光源         & 1 & $\lambda = 632.6\,\text{nm}$ \\
+	2  & 激光器夹持器     & 1 & 三维调整 \\
+	3  & 显微物镜         & 1 & $10\times/0.25$ \\
+	4  & 针孔             & 1 & $Ø100um $ \\
+	5  & 五维调整机构     & 1 & 装配显微物镜和针孔用 \\
+	
+	6  & 衰减片2          & 1 & 衰减系数 $0.01$，装在镜框中 \\
+	7  & 双凸透镜1        & 1 & 焦距 $f = 300\,\text{mm}$，装在透镜/反射镜座中 \\
+	8  & 平凸透镜2        & 1 & 焦距 $f = 100\,\text{mm}$，装在透镜/反射镜座中 \\
+	9  & 白屏             & 1 & SZ-13，一面白屏，一面带坐标纸 \\
+	10 & 成像相机         & 1 & 大恒 MER-130-30UM  \\
+	11 & 光学导轨         & 1 & 长度 1 米，带刻度 \\
+	12 & 白光灯           & 1 & GY-6 型，亮度可调（溴钨灯） \\
+	14 & 滤光片1          & 1 & 透光波长：$435\,\text{nm}$ \\
+	15 & 滤光片2          & 1 & 透光波长：$630\,\text{nm}$ \\
+	16 & 旋转调整台       & 1 & 可调角度 $> \pm 5°$ \\
+	17 & 二维平移台       & 4 & 行程 $> 10\,\text{mm}$ \\
+	18 & 平移滑块       & 8 & \\
+	19 & 支架             & 3+5 & 50mm 长和 75mm 长\\
+	20 &磁性表座 & 4 & \\
+	\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{实验前思考题}
+
+\begin{question}
+	慧差与孔径、视场的关系？
+\end{question}
+\answerblank[3.8cm]
+\begin{question}
+	产生色差的原因？列举光学工程中常见的几种消色差的方法，并说明原理。
+\end{question}
+\answerblank[3.8cm]
+\begin{question}
+	针孔滤波的工作原理及作用？
+\end{question}
+\answerblank[3.8cm]
+\clearpage
+\begin{table}
+	\renewcommand\arraystretch{1.7}
+	\centering
+	\begin{tabularx}{\textwidth}{|X|X|X|X|}
+	\hline
+	专业：& \rule{2.5cm}{0.4pt} &年级：& \rule{2.5cm}{0.4pt} \\
+	\hline
+	姓名： &\rule{2.5cm}{0.4pt}  & 学号：&\rule{3cm}{0.4pt}  \\
+	\hline
+	室温：& \rule{2.5cm}{0.4pt} & 实验地点： & \rule{2.5cm}{0.4pt} \\
+	\hline
+	学生签名：&\rule{2.5cm}{0.4pt} & 评分： &\\
+	\hline
+	实验时间：& \rule{3cm}{0.4pt} & 教师签名：& \rule{3cm}{0.4pt} \\
+	\hline
+	\end{tabularx}
+\end{table}
+
+\section{基础物理实验 \quad 光学像差测量与分析实验 }
+
+\textbf{【实验内容、步骤、结果】}
+
+%------------------------------------------------------
+\subsection{色差测量实验}
+%------------------------------------------------------
+
+\subsubsection{实验方法和过程简述}
+
+\recordblank{5cm}
+
+实验步骤如下：
+按图示光路，先摆放溴钨灯、透镜、白屏，调整透镜3的中心高于光源等高，使光源在透镜3的物方1\textasciitilde2倍焦距处，调整白屏位置，找到溴钨灯灯丝最清晰的像位置，记录位置 $x_1=\underline{\hspace{1.8cm}}\,\mathrm{mm}$。
+
+按图示光路，放置滤光片1，调整白屏的位置，找到这时溴钨灯丝最清晰的像位置并记录白屏位置 $x_2=\underline{\hspace{1.8cm}}\,\mathrm{mm}$。
+
+
+更换为滤光片2，再调整白屏的位置，找到这时溴钨灯丝最清晰的像位置并记录白屏位置：
+\[
+x_3=\underline{\hspace{1.8cm}}\,\mathrm{mm}.
+\]
+
+计算位置色差 $$\Delta L'_{FC}=x_2-x_3=\underline{\hspace{2cm}}\,\mathrm{mm}$$
+
+判断波长于折射率之间的关系
+
+由此可得：短波（绿光）折射率大于长波（红光）折射率，即 $n_{435} > n_{630}$，与色散规律一致。
+
+\subsection{光路调试与慧差测量实验}
+%------------------------------------------------------
+
+\subsubsection{实验方法和过程简述}
+
+
+\recordblank{5cm}
+实验光路由激光器、显微物镜+针孔（空间滤波器）、双凸透镜1（准直，$f=300\,\text{mm}$）、平凸透镜2（$f=100\,\text{mm}$，安装于旋转调整台）和成像相机依次排列构成。先完成光路准直（使针孔处于显微物镜焦点、准直透镜焦点），然后通过旋转调整台改变平凸透镜2的倾斜角度，在相机靶面（位于平凸透镜2焦点处）观察并记录不同倾斜角度下的焦点图像，分析慧差随倾斜角的变化规律。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\clearpage
+\noindent\textbf{光路调试衍射光斑记录:}
+
+\recordblank{6cm}
+
+
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\subsubsection{实验结果分析}
+\recordblank{5.5cm}
+\subsection{像散测量实验}
+%------------------------------------------------------
+
+\subsubsection{实验方法和过程简述}
+
+光路与慧差实验相同，但平凸透镜2的凸面朝向入射光方向。固定透镜高度，改变旋转调整台角度使平行光斜入射到透镜上，前后移动相机，分别找到子午焦线（水平线段像）和弧矢焦线（竖直线段像）的位置并记录，计算两者轴向间距（即像散大小）。在不同倾斜角下重复上述操作。
+
+\subsubsection{实验数据记录}
+\recordblank{5.5cm}
+\subsubsection{实验现象描述}
+\noindent\textbf{实验现象：}\par
+\recordblank{4.5cm}
+\subsubsection{实验数据处理}
+\recordblank{5.5cm}
+\subsubsection{实验结果分析}
+\recordblank{5.5cm}
+\textbf{【实验过程中遇到的问题记录】}
+\recordblank{5cm}
+\clearpage
+
+\textbf{【实验后思考题】}
+
+\begin{question}
+	本实验模拟了透射式光学系统中因调整误差可能造成的慧差和像散现象，请问在反射式望远镜光学系统中，慧差和像散出现的原因一般是什么，怎么解决？
+\end{question}
+\answerblank[3.8cm]
+\clearpage
+
+\appendix
+\appendixpage
+\addappheadtotoc
+
+\subsection{实验记录}
+\recordblank{5.5cm}
+\subsection{实验台照片}
+\recordblank{5.5cm}
+\end{document}
